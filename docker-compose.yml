@@ -12,3 +12,28 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
       retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: api_uol
+    ports:
+      - 3001:3001
+    environment:
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_HOST=database
+      - DB_PORT=33060
+      - DB_NAME=db_test_uol
+    
+    volumes:
+      - ./backend/:/app-backend/
+    tty: true
+    stdin_open: true
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] 
+      timeout: 10s
+      retries: 5    
