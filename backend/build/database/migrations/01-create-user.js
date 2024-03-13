@@ -21,6 +21,7 @@ exports.default = {
             cpf: {
                 allowNull: false,
                 type: sequelize_1.DataTypes.STRING,
+                unique: true,
             },
             phone: {
                 allowNull: false,

@@ -27,6 +27,7 @@ SequelizeUsers.init({
     cpf: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     phone: {
         allowNull: false,

@@ -22,6 +22,7 @@ export default {
       cpf: {
         allowNull: false,
         type: DataTypes.STRING,
+        unique: true,
       },
       phone: {
         allowNull: false,
