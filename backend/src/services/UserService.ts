@@ -20,7 +20,7 @@ export default class UserService {
     } catch (error: any) {
       console.error('ERROR: ', error.message);
       return { status: 'INTERNAL_SERVER_ERROR',
-        data: { message: 'An error occurred while processing your request' }};
+        data: { message: error.message }};
      }
   }
 
@@ -39,7 +39,7 @@ export default class UserService {
       } catch (error: any) {
         console.error('Error creating a new user: ', error.message);
         return { status: 'INTERNAL_SERVER_ERROR',
-          data: { message: 'An error occurred while processing your request' }};
+          data: { message: error.message }};
       }
     }
 }

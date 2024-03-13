@@ -15,7 +15,7 @@ export default class UserModel implements IUsersModel {
       return usersJSON as IUsers[];      
     } catch(error: any) {
       console.error('Error getting the users list: ', error.message);      
-      throw new Error('Error getting the users list: check the logs for more info.');
+      throw new Error(`Error getting the users list: ${error.message}`);
     }
   }
 
@@ -33,7 +33,7 @@ export default class UserModel implements IUsersModel {
   
       } catch (error: any) {
         console.error('Error creating a new user: ', error.message);
-        throw new Error('Error creating a new user: check the logs for more info.');    
+        throw new Error(`Error creating a new user: ${error.message}`);
       }
   }
 }
