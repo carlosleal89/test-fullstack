@@ -54,3 +54,4 @@ SequelizeUsers.init({
   timestamps: false,
   underscored: true,
 });
+
