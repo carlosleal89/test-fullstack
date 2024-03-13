@@ -9,7 +9,18 @@ export default class UserController {
 
   public async getUsers(req: Request, res: Response) {
     const ServiceResponse = await this.userService.getUsers();
+
     return res.status(mapStatusHTTP(ServiceResponse.status))
       .json(ServiceResponse.data);
+  }
+
+  public async createUser(req: Request, res: Response) {
+    const { name, email, cpf, phone, status } = req.body;
+    const ServiceResponse = await this.userService.createUser(
+      name, email, cpf, phone, status
+    )
+
+    return res.status(mapStatusHTTP(ServiceResponse.status))
+    .json(ServiceResponse.data);
   }
 }

@@ -8,4 +8,7 @@ const userController = new UserController();
 router.get('/', (req: Request, res: Response) => 
   userController.getUsers(req, res));
 
+router.post('/', (req: Request, res: Response) =>
+  userController.createUser(req, res));  
+
 export default router;

@@ -1,5 +1,5 @@
 import SequelizeUsers from '../database/models/SequelizeUser';
-import { IUsers } from '../interfaces/IUsers';
+import { IUsers, UserStatus } from '../interfaces/IUsers';
 import { IUsersModel } from '../interfaces/IUserModel';
 
 export default class UserModel implements IUsersModel {
@@ -17,5 +17,23 @@ export default class UserModel implements IUsersModel {
       console.error('Error getting the users list: ', error.message);      
       throw new Error('Error getting the users list: check the logs for more info.');
     }
+  }
+
+  async createUser(
+    name: string,
+    email: string,
+    cpf: string,
+    phone: string,
+    status: UserStatus): Promise<IUsers> {
+      try {
+        const dbData = await this.model
+          .create({name, email, cpf, phone, status});
+  
+        return dbData;
+  
+      } catch (error: any) {
+        console.error('Error creating a new user: ', error.message);
+        throw new Error('Error creating a new user: check the logs for more info.');    
+      }
   }
 }
