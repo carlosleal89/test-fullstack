@@ -25,7 +25,7 @@ export default {
         status: 'Aguardando Ativação'
       },
       {
-        name: 'Qui-Gon Jinn',
+        name: 'QuiGon Jinn',
         email: 'quigon@master.com',
         cpf: '066.287.870-41',
         phone: '(89) 99999-9999',

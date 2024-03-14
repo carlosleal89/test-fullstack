@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import SequelizeUsers from '../database/models/SequelizeUser';
 import app from '../app';
-import { usersListMock, newValidUser } from '../mocks/users.mock';
+import { usersListMock, newValidUser, userWithExistingCPF } from '../mocks/users.mock';
 
 chai.use(chaiHttp);
 
@@ -51,6 +51,15 @@ describe('Tests of route post /users', () => {
   });
 
   it('Tests if is not possible to create a new user with an existing CPF', async function () {
+    const { body, status } = await chai.request(app)
+      .post('/users')
+      .send(userWithExistingCPF);          
+
+    expect(status).to.be.equal(500);
+    expect(body.message).to.equal(
+      "Error creating a new user: Validation error"
+    );
     
+    createdUserId = body.id;
   })
 })

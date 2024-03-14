@@ -61,6 +61,15 @@ describe('Tests of route post /users', () => {
     });
     it('Tests if is not possible to create a new user with an existing CPF', function () {
         return __awaiter(this, void 0, void 0, function* () {
+            const { body, status } = yield chai_1.default.request(app_1.default)
+                .post('/users')
+                .send(users_mock_1.userWithExistingCPF);
+            console.log(body);
+            expect(status).to.be.equal(500);
+            // expect(body).to.be(
+            //   message: "Error creating a new user: Validation error"
+            // );
+            createdUserId = body.id;
         });
     });
 });
