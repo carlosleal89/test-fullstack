@@ -3,7 +3,14 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import SequelizeUsers from '../database/models/SequelizeUser';
 import app from '../app';
-import { usersListMock, newValidUser, userWithExistingCPF } from '../mocks/users.mock';
+import {
+  usersListMock,
+  newValidUser,
+  userWithExistingCPF,
+  userInvalidCPF,
+  userInvalidEmail,
+  userInvalidStatus,
+} from '../mocks/users.mock';
 
 chai.use(chaiHttp);
 
@@ -59,7 +66,38 @@ describe('Tests of route post /users', () => {
     expect(body.message).to.equal(
       "Error creating a new user: Validation error"
     );
-    
-    createdUserId = body.id;
-  })
+  });
+
+  it('Tests if is not possible to create a new user with invalid CPF', async function () {
+    const { body, status } = await chai.request(app)
+      .post('/users')
+      .send(userInvalidCPF);          
+
+    expect(status).to.be.equal(400);
+    expect(body.message).to.equal(
+      "Formato inválido do CPF."
+    );
+  });
+
+  it('Tests if is not possible to create a new user with invalid email', async function () {
+    const { body, status } = await chai.request(app)
+      .post('/users')
+      .send(userInvalidEmail);          
+
+    expect(status).to.be.equal(422);
+    expect(body.message).to.equal(
+      "\"email\" must be a valid email"
+    );
+  });
+
+  it('Tests if is not possible to create a new user with invalid status', async function () {
+    const { body, status } = await chai.request(app)
+      .post('/users')
+      .send(userInvalidStatus);          
+
+    expect(status).to.be.equal(422);
+    expect(body.message).to.equal(
+      "\"status\" must be one of [Ativo, Inativo, Aguardando ativação, Desativado]"
+    );
+  });
 })

@@ -44,3 +44,27 @@ export const userWithExistingCPF = {
   phone: '(89) 99999-9999',
   status: 'Desativado'
 };
+
+export const userInvalidEmail = {
+  name: 'QuiGon Jinn',
+  email: 'quigon@master',
+  cpf: '066.287.870-41',
+  phone: '(89) 99999-9999',
+  status: 'Desativado'
+};
+
+export const userInvalidCPF = {
+  name: 'QuiGon Jinn',
+  email: 'quigon@master.com',
+  cpf: '066.287.870',
+  phone: '(89) 99999-9999',
+  status: 'Desativado'
+};
+
+export const userInvalidStatus = {
+  name: 'QuiGon Jinn',
+  email: 'quigon@master.com',
+  cpf: '066.287.870-41',
+  phone: '(89) 99999-9999',
+  status: 'test'
+};
