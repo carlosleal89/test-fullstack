@@ -30,11 +30,11 @@ export const usersListMock = [
 ];
 
 export const newValidUser = {
-  "name": "Carlos Leal",
-	"email": "carlos@tst.com",
+  "name": "Nemesis",
+	"email": "nemesis@umbrella.com",
 	"cpf": "066.555.665-56",
 	"phone": "(51) 9999-9999",
-	"status": "Ativo"
+	"status": "Aguardando ativação"
 };
 
 export const userWithExistingCPF = {
@@ -68,3 +68,11 @@ export const userInvalidStatus = {
   phone: '(89) 99999-9999',
   status: 'test'
 };
+
+export const updateUser = {
+  "name": "Nemesis The Stars Hunter",
+	"email": "nemesis@umbrella.com",
+	"cpf": "066.555.665-56",
+	"phone": "(51) 8456-7789",
+	"status": "Ativo"
+}

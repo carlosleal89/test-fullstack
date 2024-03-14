@@ -64,12 +64,69 @@ describe('Tests of route post /users', () => {
             const { body, status } = yield chai_1.default.request(app_1.default)
                 .post('/users')
                 .send(users_mock_1.userWithExistingCPF);
-            console.log(body);
             expect(status).to.be.equal(500);
-            // expect(body).to.be(
-            //   message: "Error creating a new user: Validation error"
-            // );
+            expect(body.message).to.equal("Error creating a new user: Validation error");
+        });
+    });
+    it('Tests if is not possible to create a new user with invalid CPF', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { body, status } = yield chai_1.default.request(app_1.default)
+                .post('/users')
+                .send(users_mock_1.userInvalidCPF);
+            expect(status).to.be.equal(400);
+            expect(body.message).to.equal("Formato inválido do CPF.");
+        });
+    });
+    it('Tests if is not possible to create a new user with invalid email', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { body, status } = yield chai_1.default.request(app_1.default)
+                .post('/users')
+                .send(users_mock_1.userInvalidEmail);
+            expect(status).to.be.equal(422);
+            expect(body.message).to.equal("\"email\" must be a valid email");
+        });
+    });
+    it('Tests if is not possible to create a new user with invalid status', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { body, status } = yield chai_1.default.request(app_1.default)
+                .post('/users')
+                .send(users_mock_1.userInvalidStatus);
+            expect(status).to.be.equal(422);
+            expect(body.message).to.equal("\"status\" must be one of [Ativo, Inativo, Aguardando ativação, Desativado]");
+        });
+    });
+});
+describe('Tests of route patch /users', () => {
+    let createdUserId;
+    beforeEach(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            // creates a new user before each test to avoid update an existing valid user
+            const { body } = yield chai_1.default.request(app_1.default)
+                .post('/users')
+                .send(users_mock_1.newValidUser);
             createdUserId = body.id;
+        });
+    });
+    afterEach(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            // delete the created user to maintain the DB with valid data
+            if (createdUserId) {
+                yield SequelizeUser_1.default.destroy({
+                    where: {
+                        id: createdUserId
+                    }
+                });
+            }
+        });
+    });
+    it('Tests if route patch /users update a user.', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { body, status } = yield chai_1.default.request(app_1.default)
+                .patch(`/users/${createdUserId}`)
+                .send(users_mock_1.updateUser);
+            expect(status).to.be.equal(200);
+            // expect(body).to.include(updateUser);
+            // createdUserId = body.id;
         });
     });
 });

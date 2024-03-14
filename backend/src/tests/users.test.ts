@@ -10,6 +10,7 @@ import {
   userInvalidCPF,
   userInvalidEmail,
   userInvalidStatus,
+  updateUser,
 } from '../mocks/users.mock';
 
 chai.use(chaiHttp);
@@ -43,7 +44,6 @@ describe('Tests of route post /users', () => {
         }
       });
     }
-
   });
 
   it('Tests if route post /users create a new user.', async function () {
@@ -100,4 +100,38 @@ describe('Tests of route post /users', () => {
       "\"status\" must be one of [Ativo, Inativo, Aguardando ativação, Desativado]"
     );
   });
-})
+});
+
+describe('Tests of route patch /users', () => {
+  let createdUserId: any;
+
+  beforeEach(async function () {
+    // creates a new user before each test to avoid update an existing valid user
+    const { body } = await chai.request(app)
+      .post('/users')
+      .send(newValidUser);
+
+    createdUserId = body.id;
+  });
+
+  afterEach(async function () {
+    // delete the created user to maintain the DB with valid data
+    if (createdUserId) {
+      await SequelizeUsers.destroy({
+        where: {
+          id: createdUserId
+        }
+      });
+    }
+  });
+
+  it('Tests if route patch /users update a user.', async function () {
+    const { body, status } = await chai.request(app)
+      .patch(`/users/${createdUserId}`)
+      .send(updateUser);      
+
+    expect(status).to.be.equal(200);
+    expect(body).to.include(updateUser);
+  });
+
+});
