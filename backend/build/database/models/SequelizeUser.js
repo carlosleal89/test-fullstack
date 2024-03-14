@@ -46,12 +46,20 @@ SequelizeUsers.init({
     underscored: true,
     hooks: {
         beforeValidate: (user) => {
-            if (user.name) {
-                user.name = capitalizeFirstLetterEachWord(user.name);
-            }
+            user.name = capitalizeFirstLetterEachWord(user.name);
         },
+        beforeSave: (user) => {
+            user.cpf = formatCpf(user.cpf);
+        }
     }
 });
 function capitalizeFirstLetterEachWord(str) {
     return str.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+function formatCpf(cpf) {
+    if (!/\d{3}\.\d{3}\.\d{3}-\d{2}/.test(cpf)) {
+        // format CPF to pattern 123.456.789-00
+        return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+    }
+    return cpf;
 }
