@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const UserModel_1 = __importDefault(require("../models/UserModel"));
+const inputValidator_1 = require("../validations/inputValidator");
 class UserService {
     constructor(userModel = new UserModel_1.default()) {
         this.userModel = userModel;
@@ -36,6 +37,10 @@ class UserService {
     createUser(name, email, cpf, phone, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const validateError = (0, inputValidator_1.validateUser)(name, email, phone, status);
+                if (validateError) {
+                    return { status: validateError.status, data: { message: validateError.message } };
+                }
                 const newUser = yield this.userModel.createUser(name, email, cpf, phone, status);
                 return { status: 'CREATED', data: newUser };
             }
@@ -49,6 +54,10 @@ class UserService {
     updateUser(id, name, email, cpf, phone, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const validateError = (0, inputValidator_1.validateUser)(name, email, phone, status);
+                if (validateError) {
+                    return { status: validateError.status, data: { message: validateError.message } };
+                }
                 const updatedUser = yield this.userModel.updateUser(id, name, email, cpf, phone, status);
                 return { status: 'SUCCESSFUL', data: updatedUser };
             }

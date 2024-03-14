@@ -28,9 +28,9 @@ exports.default = {
                 type: sequelize_1.DataTypes.STRING,
             },
             status: {
-                type: sequelize_1.DataTypes.ENUM('Ativo', 'Inativo', 'Aguardando Ativação', 'Desativado'),
+                type: sequelize_1.DataTypes.ENUM('Ativo', 'Inativo', 'Aguardando ativação', 'Desativado'),
                 allowNull: false,
-                defaultValue: 'Aguardando Ativação'
+                defaultValue: 'Aguardando ativação'
             },
         });
     },
