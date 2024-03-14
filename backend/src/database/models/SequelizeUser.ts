@@ -53,5 +53,16 @@ SequelizeUsers.init({
   tableName: 'users',
   timestamps: false,
   underscored: true,
+  hooks: {
+    beforeValidate: (user) => {
+      if (user.name) {
+        user.name = capitalizeFirstLetterEachWord(user.name);
+      }
+    },
+  }
 });
+
+function capitalizeFirstLetterEachWord(str: string) {
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
+}
 
