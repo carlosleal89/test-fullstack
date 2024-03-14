@@ -2,6 +2,7 @@ import UserModel from '../models/UserModel';
 import { IUsers, UserStatus } from '../interfaces/IUsers';
 import { ServiceResponse } from '../interfaces/ServiceResponse';
 import { IUsersModel } from '../interfaces/IUserModel';
+import { validateNewUser } from '../validations/inputValidator';
 
 export default class UserService {
   constructor(
@@ -31,6 +32,12 @@ export default class UserService {
     phone: string,
     status: UserStatus): Promise<ServiceResponse<IUsers>> {
       try {
+        const error = validateNewUser(name, email, phone, status);
+
+        if (error) {
+          return { status: error.status, data: { message: error.message } };          
+        } 
+
         const newUser = await this.userModel.createUser(
           name, email, cpf, phone, status);
         
