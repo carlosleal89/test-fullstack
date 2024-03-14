@@ -23,8 +23,8 @@ class UserModel {
                 const allUsers = yield this.model.findAll();
                 if (allUsers.length === 0)
                     return null;
-                const usersJSON = allUsers.map((product) => product.toJSON());
-                return usersJSON;
+                // const usersJSON = allUsers.map((user) => user.toJSON());
+                return allUsers;
             }
             catch (error) {
                 console.error('Error getting the users list: ', error.message);

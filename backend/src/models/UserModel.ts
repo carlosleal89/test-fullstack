@@ -10,9 +10,8 @@ export default class UserModel implements IUsersModel {
       const allUsers = await this.model.findAll();
       if (allUsers.length === 0) return null;
 
-      const usersJSON = allUsers.map((product) => product.toJSON());
-
-      return usersJSON as IUsers[];      
+      return allUsers as IUsers[];
+      
     } catch(error: any) {
       console.error('Error getting the users list: ', error.message);      
       throw new Error(`Error getting the users list: ${error.message}`);
