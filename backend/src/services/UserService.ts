@@ -41,5 +41,25 @@ export default class UserService {
         return { status: 'INTERNAL_SERVER_ERROR',
           data: { message: error.message }};
       }
-    }
+  }
+
+  public async updateUser(
+    id: number,
+    name: string,
+    email: string,
+    cpf: string,
+    phone: string,
+    status: UserStatus): Promise<ServiceResponse<IUsers>> {
+      try {
+        const updatedUser = await this.userModel.updateUser(
+          id, name, email, cpf, phone, status);
+        
+        return { status: 'SUCCESSFUL', data: updatedUser };
+         
+      } catch (error: any) {
+        console.error('Error creating a updating user: ', error.message);
+        return { status: 'INTERNAL_SERVER_ERROR',
+          data: { message: error.message }};
+      }
+    } 
 }

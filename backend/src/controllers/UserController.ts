@@ -23,4 +23,15 @@ export default class UserController {
     return res.status(mapStatusHTTP(ServiceResponse.status))
     .json(ServiceResponse.data);
   }
+
+  public async updateUser(req: Request, res: Response) {
+    const { id } = req.params;
+    const { name, email, cpf, phone, status } = req.body;
+    const ServiceResponse = await this.userService.updateUser(
+      Number(id), name, email, cpf, phone, status
+    );
+
+    return res.status(mapStatusHTTP(ServiceResponse.status))
+    .json(ServiceResponse.data);
+  }
 }

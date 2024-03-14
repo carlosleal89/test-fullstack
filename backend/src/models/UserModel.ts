@@ -36,4 +36,28 @@ export default class UserModel implements IUsersModel {
         throw new Error(`Error creating a new user: ${error.message}`);
       }
   }
-}
+
+  async updateUser(
+    id: number,
+    name: string,
+    email: string,
+    cpf: string,
+    phone: string,
+    status: UserStatus
+  ): Promise<IUsers>
+ {
+  try {
+    const dbData = await this.model
+      .update({name, email, cpf, phone, status}, {
+        where: {
+          id,
+        },
+      });
+
+    return { id, name, email, cpf, phone, status };
+
+  } catch (error: any) {
+    console.error('Error updating the user: ', error.message);
+    throw new Error(`Error updating the user: ${error.message}`);
+  }
+ }}

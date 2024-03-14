@@ -9,4 +9,12 @@ export interface IUsersModel {
     phone: string,
     status: UserStatus
   ): Promise<IUsers>
+  updateUser(
+    id: number,
+    name: string,
+    email: string,
+    cpf: string,
+    phone: string,
+    status: UserStatus
+  ): Promise<IUsers>
 }
