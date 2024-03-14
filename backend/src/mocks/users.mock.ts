@@ -28,3 +28,11 @@ export const usersListMock = [
     status: 'Desativado'
   },
 ]
+
+export const newValidUser = {
+  "name": "Carlos Leal",
+	"email": "carlos@tst.com",
+	"cpf": "066.555.665-56",
+	"phone": "(51) 9999-9999",
+	"status": "Ativo"
+}
