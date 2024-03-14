@@ -29,9 +29,9 @@ export default {
         type: DataTypes.STRING,
       },
       status: {
-        type: DataTypes.ENUM('Ativo', 'Inativo', 'Aguardando Ativação', 'Desativado'),
+        type: DataTypes.ENUM('Ativo', 'Inativo', 'Aguardando ativação', 'Desativado'),
         allowNull: false,
-        defaultValue: 'Aguardando Ativação'
+        defaultValue: 'Aguardando ativação'
       },      
     }) 
   }, 

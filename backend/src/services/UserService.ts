@@ -2,7 +2,7 @@ import UserModel from '../models/UserModel';
 import { IUsers, UserStatus } from '../interfaces/IUsers';
 import { ServiceResponse } from '../interfaces/ServiceResponse';
 import { IUsersModel } from '../interfaces/IUserModel';
-import { validateNewUser } from '../validations/inputValidator';
+import { validateUser } from '../validations/inputValidator';
 
 export default class UserService {
   constructor(
@@ -32,11 +32,11 @@ export default class UserService {
     phone: string,
     status: UserStatus): Promise<ServiceResponse<IUsers>> {
       try {
-        const error = validateNewUser(name, email, phone, status);
+        const validateError = validateUser(name, email, phone, status);
 
-        if (error) {
-          return { status: error.status, data: { message: error.message } };          
-        } 
+        if (validateError) {
+          return { status: validateError.status, data: { message: validateError.message } };          
+        }
 
         const newUser = await this.userModel.createUser(
           name, email, cpf, phone, status);
@@ -58,6 +58,11 @@ export default class UserService {
     phone: string,
     status: UserStatus): Promise<ServiceResponse<IUsers>> {
       try {
+        const validateError = validateUser(name, email, phone, status);
+
+        if (validateError) {
+          return { status: validateError.status, data: { message: validateError.message } };          
+        } 
         const updatedUser = await this.userModel.updateUser(
           id, name, email, cpf, phone, status);
         
