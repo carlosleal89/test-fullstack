@@ -36,7 +36,6 @@ describe('Tests of route get /users', () => {
         return __awaiter(this, void 0, void 0, function* () {
             sinon_1.default.stub(SequelizeUser_1.default, 'findAll').resolves(users_mock_1.usersListMock);
             const { body, status } = yield chai_1.default.request(app_1.default).get('/users');
-            console.log('TESTE', body);
             expect(body).to.deep.equal(users_mock_1.usersListMock);
         });
     });

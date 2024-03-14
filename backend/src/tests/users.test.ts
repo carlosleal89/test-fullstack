@@ -1,10 +1,5 @@
-import assert from 'assert';
-// import * as sinon from 'sinon';
 import Sinon from 'sinon';
-// import * as chai from 'chai';
 import chai from 'chai';
-// @ts-ignore
-// import chaiHttp = require('chai-http');
 import chaiHttp from 'chai-http';
 import SequelizeUsers from '../database/models/SequelizeUser';
 import app from '../app';
