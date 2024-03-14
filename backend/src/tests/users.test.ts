@@ -38,6 +38,7 @@ describe('Tests of route post /users', () => {
     }
 
   });
+
   it('Tests if route post /users create a new user.', async function () {
     const { body, status } = await chai.request(app)
       .post('/users')
@@ -47,5 +48,9 @@ describe('Tests of route post /users', () => {
     expect(body).to.include(newValidUser);
     
     createdUserId = body.id;
+  });
+
+  it('Tests if is not possible to create a new user with an existing CPF', async function () {
+    
   })
 })

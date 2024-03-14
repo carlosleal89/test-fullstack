@@ -36,3 +36,5 @@ export const newValidUser = {
 	"phone": "(51) 9999-9999",
 	"status": "Ativo"
 }
+
+export const userWithExistingCPF = { }

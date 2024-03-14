@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.usersListMock = void 0;
+exports.userWithExistingCPF = exports.newValidUser = exports.usersListMock = void 0;
 exports.usersListMock = [
     {
         name: 'Alan Wake',
@@ -31,3 +31,11 @@ exports.usersListMock = [
         status: 'Desativado'
     },
 ];
+exports.newValidUser = {
+    "name": "Carlos Leal",
+    "email": "carlos@tst.com",
+    "cpf": "066.555.665-56",
+    "phone": "(51) 9999-9999",
+    "status": "Ativo"
+};
+exports.userWithExistingCPF = {};
