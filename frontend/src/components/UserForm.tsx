@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import api from '../api';
+import { useHistory } from 'react-router-dom';
 
 function UserForm() {
+  const history = useHistory();
   const [ userData, setUserData] = useState({
     name: '',
     email: '',
@@ -19,6 +21,10 @@ function UserForm() {
       [name]: value,
     }));
   };
+
+  const handleClick = (url: string): void => {
+    history.push(url)
+  }
 
   // o botão de submeter o form deve ter o texto alterado de acordo com a rota.
 
@@ -48,13 +54,14 @@ function UserForm() {
         <label htmlFor="status" />
         <select id="status" name="status" value={userData.status}
           onChange={handleChange}>
-        <option>Status</option>
+        <option value="">Status</option>
           <option value="Ativo">Ativo</option>
           <option value="Inativo">Inativo</option>
           <option value="Aguardando ativação">Aguardando ativação</option>
           <option value="Desativado">Desativado</option>
         </select>        
         <button type="submit" className="button-form">Salvar</button>
+        <button onClick={() => handleClick('/')}>Voltar</button>
       </form>
     </div>
   )
