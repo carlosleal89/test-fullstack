@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 function UserForm() {
   const history = useHistory();
+  const { pathname } = useLocation();
+  const [ location, setLocation ] = useState('');
   const [ userData, setUserData] = useState({
     name: '',
     email: '',
     cpf: '',
     phone: '',
     status: '',
-  });
+  });  
 
   // tipar o state
+
+  useEffect(() => {
+    if (pathname === '/new-user') {
+      setLocation('Criar');
+    } else {
+      setLocation('Editar');
+    }    
+  }, [])
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -25,8 +35,6 @@ function UserForm() {
   const handleClick = (url: string): void => {
     history.push(url)
   }
-
-  // o botão de submeter o form deve ter o texto alterado de acordo com a rota.
 
   // esse componente deve receber via props o tipo de operação sera realizado.
   // quando for para editar, devera receber os dados do usuario a ser editado de forma
@@ -60,7 +68,7 @@ function UserForm() {
           <option value="Aguardando ativação">Aguardando ativação</option>
           <option value="Desativado">Desativado</option>
         </select>        
-        <button type="submit" className="button-form">Salvar</button>
+        <button type="submit" className="button-form">{location}</button>
         <button onClick={() => handleClick('/')}>Voltar</button>
       </form>
     </div>
