@@ -22,8 +22,7 @@ function Home() {
   }
 
   return (
-    <div>
-      <h1>Painel de Clientes</h1>
+    <div className="home_container">      
       <div>
         <h3>Listagem de usuários</h3>
         <p>Escolha um cliente para visualizar os detalhes</p>

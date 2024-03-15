@@ -6,13 +6,14 @@ import CreateUser from './pages/CreateUser';
 
 function App() {
   return (
-    <>
+    <div className="main_container">
+      <h1>Painel de Clientes</h1>
       <Switch>
         <Route exact path='/' component={ Home } />
         <Route exact path='/user/:id' component={ EditUser } />
         <Route exact path='/new-user' component={ CreateUser } />
       </Switch>
-    </>
+    </div>
   );
 }
 
