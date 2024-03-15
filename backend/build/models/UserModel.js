@@ -31,6 +31,25 @@ class UserModel {
             }
         });
     }
+    ;
+    getUserById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const userById = yield this.model.findOne({
+                    where: {
+                        id
+                    }
+                });
+                if (!userById)
+                    return null;
+                return userById;
+            }
+            catch (error) {
+                console.error('Error getting the user by id: ', error.message);
+                throw new Error(`Error getting the user by id: ${error.message}`);
+            }
+        });
+    }
     createUser(name, email, cpf, phone, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

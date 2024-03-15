@@ -8,6 +8,7 @@ const express_1 = require("express");
 const validateCpf_1 = require("../validations/middlewares/validateCpf");
 const router = (0, express_1.Router)();
 const userController = new UserController_1.default();
+router.get('/:id', (req, res) => userController.getUserById(req, res));
 router.get('/', (req, res) => userController.getUsers(req, res));
 router.post('/', validateCpf_1.validateCpf, (req, res) => userController.createUser(req, res));
 router.patch('/:id', validateCpf_1.validateCpf, (req, res) => userController.updateUser(req, res));

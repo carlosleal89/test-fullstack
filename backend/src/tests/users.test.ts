@@ -104,7 +104,7 @@ describe('Tests of route post /users', () => {
 
     expect(status).to.be.equal(422);
     expect(body.message).to.equal(
-      "\"email\" must be a valid email"
+      "\"Email\" incorreto"
     );
   });
 
