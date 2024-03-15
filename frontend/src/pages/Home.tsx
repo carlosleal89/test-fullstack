@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import api from '../api';
 import Loading from '../components/Loading';
 import { IUsers } from '../interfaces/IUser';
+import { useHistory } from 'react-router-dom';
 
 
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
+  const history = useHistory();
   
   useEffect(() => {
     const getUserList = async () => {
@@ -15,13 +17,17 @@ function Home() {
     getUserList();
   }, [])
 
+  const handleClick = (url: string): void => {
+    history.push(url)
+  }
+
   return (
     <div>
       <h1>Painel de Clientes</h1>
       <div>
         <h3>Listagem de usuários</h3>
         <p>Escolha um cliente para visualizar os detalhes</p>
-        <button>Novo Cliente</button>
+        <button onClick={() => handleClick('/new-user')}>Novo Cliente</button>
       </div>
       {
         usersList.map((userEl) => (
@@ -31,7 +37,7 @@ function Home() {
             <p>{ userEl.cpf }</p>
             <p>{ userEl.phone }</p>
             <p>{ userEl.status }</p>
-            <button>Editar</button>
+            <button onClick={() => handleClick(`/user/${userEl.id}`)}>Editar</button>
           </div>
         ))
       }
