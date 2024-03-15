@@ -13,7 +13,7 @@ export default class UserService {
     try {
       const allUsers = await this.userModel.getUsers();
       if (!allUsers) {
-        return { status: 'NOT_FOUND', data: { message: 'No users found.' }};
+        return { status: 'NO_CONTENT', data: { message: '' }};
       }
 
       return { status: 'SUCCESSFUL', data: allUsers };
@@ -29,7 +29,7 @@ export default class UserService {
     try {
       const userById = await this.userModel.getUserById(id);
       if (!userById) {
-        return { status: 'NOT_FOUND', data: { message: 'No user found with that id.' }};
+        return { status: 'NO_CONTENT', data: { message: '' }};
       }
 
       return { status: 'SUCCESSFUL', data: userById };

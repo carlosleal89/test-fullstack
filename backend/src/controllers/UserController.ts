@@ -27,6 +27,8 @@ export default class UserController {
   public async getUserById(req: Request, res: Response) {
     const { id } = req.params;
     const ServiceResponse = await this.userService.getUserById(Number(id));
+    console.log(ServiceResponse);
+    
 
     return res.status(mapStatusHTTP(ServiceResponse.status))
     .json(ServiceResponse.data);
