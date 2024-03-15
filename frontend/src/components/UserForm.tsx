@@ -48,7 +48,13 @@ function UserForm() {
         phone: userData.phone,
         status: userData.status
       }
-      const validateError = validateUser(reqBody.name, reqBody.email, reqBody.phone, reqBody.status);
+      const validateError = validateUser(
+        reqBody.name,
+        reqBody.email,
+        reqBody.phone,
+        reqBody.status,
+        reqBody.cpf
+        );
       if (validateError) {
         console.log(validateError);
         
