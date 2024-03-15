@@ -34,6 +34,20 @@ describe('Tests of route get /users', () => {
   });
 })
 
+describe('Tests of route get /users/:id', () => {
+  afterEach(Sinon.restore);
+  it('Tests if route get /users/:id returns the expected user.', async function () {
+    Sinon.stub(SequelizeUsers, 'findOne').resolves(usersListMock[0] as any);
+
+    const { status, body } =  await chai.request(app).get('/users/1');
+
+    console.log('TEST', status, body);
+
+    expect(status).to.be.equal(200);
+    expect(body).to.include(usersListMock[0])
+  });
+})
+
 describe('Tests of route post /users', () => {
   let createdUserId: any;
   afterEach(async function () {
