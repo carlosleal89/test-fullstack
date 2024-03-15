@@ -13,7 +13,7 @@ export default class UserService {
     try {
       const allUsers = await this.userModel.getUsers();
       if (!allUsers) {
-        return { status: 'NOT_FOUND', data: { message: 'No users found.' }};
+        return { status: 'NO_CONTENT', data: { message: '' }};
       }
 
       return { status: 'SUCCESSFUL', data: allUsers };
@@ -23,6 +23,22 @@ export default class UserService {
       return { status: 'INTERNAL_SERVER_ERROR',
         data: { message: error.message }};
      }
+  }
+
+  public async getUserById(id: number): Promise<ServiceResponse<IUsers>> {
+    try {
+      const userById = await this.userModel.getUserById(id);
+      if (!userById) {
+        return { status: 'NO_CONTENT', data: { message: '' }};
+      }
+
+      return { status: 'SUCCESSFUL', data: userById };
+
+    } catch(error: any) {
+      console.error('ERROR: ', error.message);
+      return { status: 'INTERNAL_SERVER_ERROR',
+        data: { message: error.message }};
+    }
   }
 
   public async createUser(
