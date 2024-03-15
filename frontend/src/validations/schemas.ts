@@ -28,7 +28,7 @@ export const createUserValidator = Joi.object({
   cpf: Joi.string()
     .trim()
     .pattern(/^\d{11}$/)
-    .message('CPF inválido.')
+    .message('CPF deve ter 11 digitos e conter somente números.')
     .custom((value, helpers) => {
       if (/^(\d)\1+$/.test(value)) {
         return helpers.error('any.invalid');
