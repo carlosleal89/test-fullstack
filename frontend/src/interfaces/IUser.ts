@@ -17,8 +17,8 @@ export interface IUsers {
 }
 
 export interface IUserContext {
-  usersList: IUsers[];
-  setUsersList: React.Dispatch<React.SetStateAction<IUsers[]>>;
+  userById: IUsers;
+  setUserById: React.Dispatch<React.SetStateAction<IUsers>>;
 }
 
 export interface UserProviderProps {

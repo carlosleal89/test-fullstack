@@ -1,14 +1,21 @@
 import React, { useState, useMemo } from 'react'
 import UserContext from './UserContext';
-import { UserProviderProps, IUsers } from '../interfaces/IUser';
+import { UserProviderProps, IUsers, UserStatus } from '../interfaces/IUser';
 
 function UserProvider({ children }: UserProviderProps) {
-  const [ usersList, setUsersList ] = useState<IUsers[]>([]);
+  const [ userById, setUserById ] = useState<IUsers>({
+    id: 0,
+    name: '',
+    email: '',
+    cpf: '',
+    phone: '',
+    status: UserStatus.AguardandoAtivacao,
+  });
 
   const useContextValues = useMemo(() => ({
-    usersList,
-    setUsersList
-  }), [])
+    userById,
+    setUserById
+  }), [userById])
 
   // passar o estado e setState no array do useMemo?
 

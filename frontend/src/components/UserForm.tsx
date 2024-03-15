@@ -1,10 +1,12 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, useContext } from 'react';
 import api from '../api';
 import { useHistory, useLocation } from 'react-router-dom';
+import UserContext from '../context/UserContext';
 
 function UserForm() {
   const history = useHistory();
   const { pathname } = useLocation();
+  const { userById } = useContext(UserContext);
   const [ location, setLocation ] = useState('');
   const [ userData, setUserData] = useState({
     name: '',
@@ -21,8 +23,11 @@ function UserForm() {
       setLocation('Criar');
     } else {
       setLocation('Editar');
+      console.log(userById);
+      
+      setUserData({...userById})
     }    
-  }, [])
+  }, [userById])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
