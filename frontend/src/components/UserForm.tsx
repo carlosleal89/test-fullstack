@@ -9,22 +9,21 @@ function UserForm() {
   const { userById } = useContext(UserContext);
   const [ location, setLocation ] = useState('');
   const [ userData, setUserData] = useState({
+    id: 0,
     name: '',
     email: '',
     cpf: '',
     phone: '',
     status: '',
   });  
-
+  
   // tipar o state
 
   useEffect(() => {
     if (pathname === '/new-user') {
       setLocation('Criar');
     } else {
-      setLocation('Editar');
-      console.log(userById);
-      
+      setLocation('Editar');      
       setUserData({...userById})
     }    
   }, [userById])
@@ -40,11 +39,22 @@ function UserForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     try {
-      const { data } =  await api.post('users/', userData)
-      console.log(data);
-      
+      if (location === 'Criar') {
+        const { data } =  await api.post('users/', userData);
+      } else {
+        const reqBody = {
+          name: userData.name,
+          email: userData.email,
+          cpf: userData.cpf,
+          phone: userData.phone,
+          status: userData.status
+        }
+        const { data } = await api.patch(`users/${userData.id}`, reqBody)
+        console.log(data);
+        
+      }
     } catch (error: any) {
-      console.error(error.message)
+      console.error(error.message);
     }
   } 
 
