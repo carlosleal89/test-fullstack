@@ -100,7 +100,7 @@ describe('Tests of route post /users', () => {
                 .post('/users')
                 .send(users_mock_1.userInvalidEmail);
             expect(status).to.be.equal(422);
-            expect(body.message).to.equal("\"email\" must be a valid email");
+            expect(body.message).to.equal("\"Email\" incorreto");
         });
     });
     it('Tests if is not possible to create a new user with invalid status', function () {

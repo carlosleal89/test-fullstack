@@ -93,7 +93,7 @@ describe('Tests of route post /users', () => {
 
     expect(status).to.be.equal(400);
     expect(body.message).to.equal(
-      "Formato inválido do CPF."
+      "O CPF deve conter 11 digitos."
     );
   });
 
