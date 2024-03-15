@@ -41,28 +41,28 @@ function UserForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     try {
+      const reqBody = {
+        name: userData.name,
+        email: userData.email,
+        cpf: userData.cpf,
+        phone: userData.phone,
+        status: userData.status
+      }
+      const validateError = validateUser(reqBody.name, reqBody.email, reqBody.phone, reqBody.status);
+      if (validateError) {
+        console.log(validateError);
+        
+        Swal.fire({
+          title: 'Verifique os dados!',
+          text: validateError.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
       if (location === 'Criar') {
-        await api.post('users/', userData);
-      } else {
-        const reqBody = {
-          name: userData.name,
-          email: userData.email,
-          cpf: userData.cpf,
-          phone: userData.phone,
-          status: userData.status
-        }
-        const validateError = validateUser(reqBody.name, reqBody.email, reqBody.phone, reqBody.status);
-        if (validateError) {
-          console.log(validateError);
-          
-          Swal.fire({
-            title: 'Verifique os dados!',
-            text: 'tst',
-            icon: 'error',
-            confirmButtonText: 'OK',
-          });
-          return;
-        }
+        await api.post('users/', reqBody);
+      } else {        
         await api.patch(`users/${userData.id}`, reqBody);        
       }
     } catch (error: any) {
