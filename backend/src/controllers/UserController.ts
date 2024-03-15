@@ -24,6 +24,14 @@ export default class UserController {
     .json(ServiceResponse.data);
   }
 
+  public async getUserById(req: Request, res: Response) {
+    const { id } = req.params;
+    const ServiceResponse = await this.userService.getUserById(Number(id));
+
+    return res.status(mapStatusHTTP(ServiceResponse.status))
+    .json(ServiceResponse.data);
+  }
+
   public async updateUser(req: Request, res: Response) {
     const { id } = req.params;
     const { name, email, cpf, phone, status } = req.body;

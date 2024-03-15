@@ -25,6 +25,22 @@ export default class UserService {
      }
   }
 
+  public async getUserById(id: number): Promise<ServiceResponse<IUsers>> {
+    try {
+      const userById = await this.userModel.getUserById(id);
+      if (!userById) {
+        return { status: 'NOT_FOUND', data: { message: 'No user found with that id.' }};
+      }
+
+      return { status: 'SUCCESSFUL', data: userById };
+
+    } catch(error: any) {
+      console.error('ERROR: ', error.message);
+      return { status: 'INTERNAL_SERVER_ERROR',
+        data: { message: error.message }};
+    }
+  }
+
   public async createUser(
     name: string,
     email: string,

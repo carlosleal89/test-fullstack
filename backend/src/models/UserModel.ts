@@ -16,6 +16,23 @@ export default class UserModel implements IUsersModel {
       console.error('Error getting the users list: ', error.message);      
       throw new Error(`Error getting the users list: ${error.message}`);
     }
+  };
+
+  async getUserById(id: number): Promise<IUsers | null> {
+    try {
+      const userById = await this.model.findOne({
+        where: {
+          id
+        }
+      });
+      if (!userById) return null;
+
+      return userById as IUsers;
+
+    } catch(error: any) {
+      console.error('Error getting the user by id: ', error.message);      
+      throw new Error(`Error getting the user by id: ${error.message}`);
+    }   
   }
 
   async createUser(

@@ -6,6 +6,9 @@ const router = Router();
 
 const userController = new UserController();
 
+router.get('/:id', (req: Request, res: Response) => 
+  userController.getUserById(req, res));
+
 router.get('/', (req: Request, res: Response) => 
   userController.getUsers(req, res));
 
