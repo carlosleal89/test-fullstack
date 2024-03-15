@@ -4,15 +4,16 @@ import Loading from '../components/Loading';
 import { IUsers } from '../interfaces/IUser';
 import { useHistory } from 'react-router-dom';
 
-
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
   const history = useHistory();
   
   useEffect(() => {
     const getUserList = async () => {
       const { data } = await api.get('users/');
       setUsersList(data);
+      setIsLoading(false);
     };
     getUserList();
   }, [])
@@ -28,7 +29,7 @@ function Home() {
         <p>Escolha um cliente para visualizar os detalhes</p>
         <button onClick={() => handleClick('/new-user')}>Novo Cliente</button>
       </div>
-      {
+      {usersList.length > 0 &&
         usersList.map((userEl) => (
           <div className="users_container" key={userEl.id}>
             <p>{ userEl.name }</p>
@@ -40,6 +41,7 @@ function Home() {
           </div>
         ))
       }
+      {isLoading && <Loading />}
       <p>Exibindo {usersList.length} clientes</p>
     </div>
   )
