@@ -3,6 +3,7 @@ import api from '../api';
 import Loading from '../components/Loading';
 import { IUsers } from '../interfaces/IUser';
 import { useHistory } from 'react-router-dom';
+import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
 
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
@@ -34,8 +35,8 @@ function Home() {
           <div className="users_container" key={userEl.id}>
             <p>{ userEl.name }</p>
             <p>{ userEl.email }</p>
-            <p>{ userEl.cpf }</p>
-            <p>{ userEl.phone }</p>
+            <p>{ formatCPF(userEl.cpf) }</p>
+            <p>{ formatPhoneNumber(userEl.phone) }</p>
             <p>{ userEl.status }</p>
             <button onClick={() => handleClick(`/user/${userEl.id}`)}>Editar</button>
           </div>
