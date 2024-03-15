@@ -2,6 +2,8 @@ import React, { useState, useEffect, ChangeEvent, useContext } from 'react';
 import api from '../api';
 import { useHistory, useLocation } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+import { validateUser } from '../validations/inputValidator';
+import Swal from 'sweetalert2';
 
 function UserForm() {
   const history = useHistory();
@@ -40,7 +42,7 @@ function UserForm() {
     event.preventDefault();
     try {
       if (location === 'Criar') {
-        const { data } =  await api.post('users/', userData);
+        await api.post('users/', userData);
       } else {
         const reqBody = {
           name: userData.name,
@@ -49,9 +51,19 @@ function UserForm() {
           phone: userData.phone,
           status: userData.status
         }
-        const { data } = await api.patch(`users/${userData.id}`, reqBody)
-        console.log(data);
-        
+        const validateError = validateUser(reqBody.name, reqBody.email, reqBody.phone, reqBody.status);
+        if (validateError) {
+          console.log(validateError);
+          
+          Swal.fire({
+            title: 'Verifique os dados!',
+            text: 'tst',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+          return;
+        }
+        await api.patch(`users/${userData.id}`, reqBody);        
       }
     } catch (error: any) {
       console.error(error.message);
