@@ -11,4 +11,3 @@ export const validateUser = (
     return error;
   }
 }
-// export {}

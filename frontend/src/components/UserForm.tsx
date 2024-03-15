@@ -73,8 +73,17 @@ function UserForm() {
       }
     } catch (error: any) {
       console.error(error.message);
+      if (error.response.data.message.includes('Validation error')) {
+        Swal.fire({
+          title: 'Verifique os dados!',
+          text: 'CPF já cadastrado.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+      
     }
-  } 
+  }
 
   return (
     <div>

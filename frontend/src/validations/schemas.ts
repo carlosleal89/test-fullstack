@@ -40,5 +40,5 @@ export const createUserValidator = Joi.object({
 })
 
 // the regular expression above validates strings
-// in the following formats '(xx) xxxx-xxxx' or '(xx) xxxxx-xxxx'
+// in the following formats 'xx xxxx-xxxx' or 'xx xxxxx-xxxx'
 // export {}
