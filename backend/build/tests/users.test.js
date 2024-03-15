@@ -91,7 +91,7 @@ describe('Tests of route post /users', () => {
                 .post('/users')
                 .send(users_mock_1.userInvalidCPF);
             expect(status).to.be.equal(400);
-            expect(body.message).to.equal("Formato inválido do CPF.");
+            expect(body.message).to.equal("O CPF deve conter 11 digitos.");
         });
     });
     it('Tests if is not possible to create a new user with invalid email', function () {
