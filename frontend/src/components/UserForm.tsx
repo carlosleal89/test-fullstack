@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import api from '../api';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ function UserForm() {
     }    
   }, [])
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
     setUserData((prevValues: any) => ({
       ...prevValues,
@@ -32,17 +32,20 @@ function UserForm() {
     }));
   };
 
-  const handleClick = (url: string): void => {
-    history.push(url)
-  }
-
-  // esse componente deve receber via props o tipo de operação sera realizado.
-  // quando for para editar, devera receber os dados do usuario a ser editado de forma
-  // a ja iniciar o form com os campos preenchidos. 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
+    try {
+      const { data } =  await api.post('users/', userData)
+      console.log(data);
+      
+    } catch (error: any) {
+      console.error(error.message)
+    }
+  } 
 
   return (
     <div>
-      <form >
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name" />
         <input type="text" id="name" placeholder="Nome"
           name="name" value={userData.name} onChange={handleChange} />
@@ -69,7 +72,7 @@ function UserForm() {
           <option value="Desativado">Desativado</option>
         </select>        
         <button type="submit" className="button-form">{location}</button>
-        <button onClick={() => handleClick('/')}>Voltar</button>
+        <button onClick={() => history.push('/')}>Voltar</button>
       </form>
     </div>
   )
