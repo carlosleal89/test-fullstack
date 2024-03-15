@@ -41,10 +41,14 @@ describe('Tests of route get /users/:id', () => {
 
     const { status, body } =  await chai.request(app).get('/users/1');
 
-    console.log('TEST', status, body);
-
     expect(status).to.be.equal(200);
     expect(body).to.include(usersListMock[0])
+  });
+
+  it('Tests if route get /users/:id returns the expected status if no user is found.', async function () {
+    const { status } =  await chai.request(app).get('/users/199');
+
+    expect(status).to.be.equal(204);
   });
 })
 
