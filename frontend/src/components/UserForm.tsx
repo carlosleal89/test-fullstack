@@ -29,26 +29,31 @@ function UserForm() {
   return (
     <div>
       <form >
-        <label htmlFor="name">Nome:</label>
-        <input type="text" id="name"
+        <label htmlFor="name" />
+        <input type="text" id="name" placeholder="Nome"
           name="name" value={userData.name} onChange={handleChange} />
         
-        <label htmlFor="email">Email:</label>
-        <input type="text" id="email"
+        <label htmlFor="email" />
+        <input type="text" id="email" placeholder="Email"
           name="email" value={userData.email} onChange={handleChange} />
 
-        <label htmlFor="cpf">CPF:</label>
-        <input type="text" id="cpf"
+        <label htmlFor="cpf" />
+        <input type="text" id="cpf" placeholder="CPF"
           name="cpf" value={userData.cpf} onChange={handleChange} />
 
-        <label htmlFor="phone">Telefone:</label>
-        <input type="text" id="phone"
+        <label htmlFor="phone" />
+        <input type="text" id="phone" placeholder="Telefone"
           name="phone" value={userData.phone} onChange={handleChange} />
         
-        <label htmlFor="status">Status:</label>
-        <input type="text" id="status"
-          name="status" value={userData.status} onChange={handleChange} />
-        
+        <label htmlFor="status" />
+        <select id="status" name="status" value={userData.status}
+          onChange={handleChange}>
+        <option>Status</option>
+          <option value="Ativo">Ativo</option>
+          <option value="Inativo">Inativo</option>
+          <option value="Aguardando ativação">Aguardando ativação</option>
+          <option value="Desativado">Desativado</option>
+        </select>        
         <button type="submit" className="button-form">Salvar</button>
       </form>
     </div>
