@@ -46,15 +46,15 @@ function Home() {
           <div className="gap-40 mt-5 mb-5 border rounded flex justify-between py-3 px-3" key={userEl.id}>
             <div className="w-1/6">
               <p>{ userEl.name }</p>
-              <p>{ userEl.email }</p>
+              <p className="text-gray-400">{ userEl.email }</p>
             </div>
             <div className="w-1/6">
               <p>{ formatCPF(userEl.cpf) }</p>
-              <p>{ formatPhoneNumber(userEl.phone) }</p>
+              <p className="text-gray-400">{ formatPhoneNumber(userEl.phone) }</p>
             </div >
             <div className="flex mt-auto mb-auto">
             <span className={`flex mt-auto mb-auto flex w-3 h-3 me-3 bg-${setStatusIndicator(userEl.status)} rounded-full`}></span>
-              <p className="w-fit">{ userEl.status }</p>
+              <p className="w-fit text-gray-400">{ userEl.status }</p>
             </div>
             <button
               onClick={() => handleClick(`/user/${userEl.id}`)}
@@ -65,7 +65,7 @@ function Home() {
         ))
       }
       {isLoading && <Loading />}
-      <p>Exibindo {usersList.length} clientes</p>
+      <p className="mb-5 text-gray-400">Exibindo {usersList.length} clientes</p>
     </div>
   )
 }

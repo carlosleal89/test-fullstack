@@ -12,10 +12,10 @@ export default function setStatusIndicator (status: string): string {
       statusColor = 'amber-500';
       break;
     case 'Desativado':
-      statusColor = 'gray-200';
+      statusColor = 'gray-300';
       break;
     default:
-      statusColor = 'gray-200';
+      statusColor = 'gray-300';
   }
   return statusColor;
 }
