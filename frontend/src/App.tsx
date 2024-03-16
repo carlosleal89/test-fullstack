@@ -4,17 +4,21 @@ import Home from './pages/Home';
 import EditUser from './pages/EditUser';
 import CreateUser from './pages/CreateUser';
 import Header from './components/Header';
+import './App.css';
 
 function App() {
   return (
-    <div className="main_container">
+    <div>
       <Header />
-      <h1>Painel de Clientes</h1>
-      <Switch>
-        <Route exact path='/' component={ Home } />
-        <Route exact path='/user/:id' component={ EditUser } />
-        <Route exact path='/new-user' component={ CreateUser } />
-      </Switch>
+      <div className="mt-20 ml-40 mr-40">
+        <h1 className="font-bold text-[2rem]">Painel de Clientes</h1>
+        <div className="mt-10 border-b"></div>
+        <Switch>
+          <Route exact path='/' component={ Home } />
+          <Route exact path='/user/:id' component={ EditUser } />
+          <Route exact path='/new-user' component={ CreateUser } />
+        </Switch>
+      </div>
     </div>
   );
 }

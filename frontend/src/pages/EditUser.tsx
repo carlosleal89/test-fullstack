@@ -21,9 +21,9 @@ function EditUser() {
   }, []);
   
   return (
-    <div>
-      <h2>Editar usuário:</h2>
-      <p>Edite os campos que desejar para modificar os dados do usuário:</p>
+    <div className="mt-10">
+      <h2 className="text-xl font-semibold">Editar usuário:</h2>
+      <p className="text-gray-400">Edite os campos que desejar para modificar os dados do usuário:</p>
       <UserForm />
     </div>
   )

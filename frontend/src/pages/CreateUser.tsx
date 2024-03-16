@@ -3,9 +3,9 @@ import UserForm from '../components/UserForm'
 
 function CreateUser() {
   return (
-    <div className="new-user_container">
-      <h2> Novo usuário</h2>
-      <p>Informe os campos a seguir para criar um novo usuário:</p>
+    <div className="mt-10">
+      <h2 className="text-xl font-semibold"> Novo usuário</h2>
+      <p className="text-gray-400">Informe os campos a seguir para criar um novo usuário:</p>
       <UserForm />
     </div>
   )
