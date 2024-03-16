@@ -11,12 +11,16 @@ function Home() {
   const history = useHistory();
   
   useEffect(() => {
-    const getUserList = async () => {
-      const { data } = await api.get('users/');
-      setUsersList(data);
-      setIsLoading(false);
-    };
-    getUserList();
+    try {
+      const getUserList = async () => {
+        const { data } = await api.get('users/');
+        setUsersList(data);
+        setIsLoading(false);
+      };
+      getUserList();
+    } catch(error: any) {
+      console.error(error.message)
+    }
   }, [])
 
   const handleClick = (url: string): void => {

@@ -9,11 +9,15 @@ function EditUser() {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    const getUserById = async () => {
-      const { data } = await api.get(`users/${id}`);      
-      setUserById(data);     
-    };
-    getUserById();
+    try {
+      const getUserById = async () => {
+        const { data } = await api.get(`users/${id}`);      
+        setUserById(data);     
+      };
+      getUserById();
+    } catch(error: any) {
+      console.error(error.message)
+    }
   }, []);
   
   return (
