@@ -42,7 +42,11 @@ function Home() {
             <p>{ formatCPF(userEl.cpf) }</p>
             <p>{ formatPhoneNumber(userEl.phone) }</p>
             <p>{ userEl.status }</p>
-            <button onClick={() => handleClick(`/user/${userEl.id}`)}>Editar</button>
+            <button
+              onClick={() => handleClick(`/user/${userEl.id}`)}
+              className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
+                Editar
+            </button>
           </div>
         ))
       }
