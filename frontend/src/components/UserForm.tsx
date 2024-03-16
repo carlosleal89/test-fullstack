@@ -92,7 +92,6 @@ function UserForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
       <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
         <label htmlFor="name" />
         <input type="text" id="name" placeholder="Nome"
@@ -118,19 +117,20 @@ function UserForm() {
           <option value="Inativo">Inativo</option>
           <option value="Aguardando ativação">Aguardando ativação</option>
           <option value="Desativado">Desativado</option>
-        </select>        
-        <button
-          type="submit"
-          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
-            {location}
-        </button>
-        <button
-          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
-          onClick={() => history.push('/')}>
-            Voltar
-        </button>
+        </select>
+        <div>
+          <button
+            type="submit"
+            className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
+              {location}
+          </button>
+          <button
+            className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
+            onClick={() => history.push('/')}>
+              Voltar
+          </button>          
+        </div>     
       </form>
-    </div>
   )
 }
 
