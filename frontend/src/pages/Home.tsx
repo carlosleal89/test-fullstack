@@ -4,6 +4,7 @@ import Loading from '../components/Loading';
 import { IUsers } from '../interfaces/IUser';
 import { useHistory } from 'react-router-dom';
 import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
+import setStatusIndicator from '../utils/SetStatusIndicator';
 
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
@@ -42,15 +43,22 @@ function Home() {
       </div>
       {usersList.length > 0 &&
         usersList.map((userEl) => (
-          <div className="users_container" key={userEl.id}>
-            <p>{ userEl.name }</p>
-            <p>{ userEl.email }</p>
-            <p>{ formatCPF(userEl.cpf) }</p>
-            <p>{ formatPhoneNumber(userEl.phone) }</p>
-            <p>{ userEl.status }</p>
+          <div className="gap-40 mt-5 mb-5 border rounded flex justify-between py-3 px-3" key={userEl.id}>
+            <div className="w-1/6">
+              <p>{ userEl.name }</p>
+              <p>{ userEl.email }</p>
+            </div>
+            <div className="w-1/6">
+              <p>{ formatCPF(userEl.cpf) }</p>
+              <p>{ formatPhoneNumber(userEl.phone) }</p>
+            </div >
+            <div className="flex mt-auto mb-auto">
+            <span className={`flex mt-auto mb-auto flex w-3 h-3 me-3 bg-${setStatusIndicator(userEl.status)} rounded-full`}></span>
+              <p className="w-fit">{ userEl.status }</p>
+            </div>
             <button
               onClick={() => handleClick(`/user/${userEl.id}`)}
-              className="bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
+              className="ml-auto w-fit bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
                 Editar
             </button>
           </div>
