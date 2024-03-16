@@ -33,6 +33,15 @@ class UserController {
                 .json(ServiceResponse.data);
         });
     }
+    getUserById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const ServiceResponse = yield this.userService.getUserById(Number(id));
+            console.log(ServiceResponse);
+            return res.status((0, mapStatusToHTTP_1.default)(ServiceResponse.status))
+                .json(ServiceResponse.data);
+        });
+    }
     updateUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

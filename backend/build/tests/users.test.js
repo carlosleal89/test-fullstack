@@ -36,6 +36,23 @@ describe('Tests of route get /users', () => {
         });
     });
 });
+describe('Tests of route get /users/:id', () => {
+    afterEach(sinon_1.default.restore);
+    it('Tests if route get /users/:id returns the expected user.', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            sinon_1.default.stub(SequelizeUser_1.default, 'findOne').resolves(users_mock_1.usersListMock[0]);
+            const { status, body } = yield chai_1.default.request(app_1.default).get('/users/1');
+            expect(status).to.be.equal(200);
+            expect(body).to.include(users_mock_1.usersListMock[0]);
+        });
+    });
+    it('Tests if route get /users/:id returns the expected status if no user is found.', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { status } = yield chai_1.default.request(app_1.default).get('/users/199');
+            expect(status).to.be.equal(204);
+        });
+    });
+});
 describe('Tests of route post /users', () => {
     let createdUserId;
     afterEach(function () {
@@ -74,7 +91,7 @@ describe('Tests of route post /users', () => {
                 .post('/users')
                 .send(users_mock_1.userInvalidCPF);
             expect(status).to.be.equal(400);
-            expect(body.message).to.equal("Formato inválido do CPF.");
+            expect(body.message).to.equal("O CPF deve conter 11 digitos.");
         });
     });
     it('Tests if is not possible to create a new user with invalid email', function () {
@@ -83,7 +100,7 @@ describe('Tests of route post /users', () => {
                 .post('/users')
                 .send(users_mock_1.userInvalidEmail);
             expect(status).to.be.equal(422);
-            expect(body.message).to.equal("\"email\" must be a valid email");
+            expect(body.message).to.equal("\"Email\" incorreto");
         });
     });
     it('Tests if is not possible to create a new user with invalid status', function () {
@@ -125,8 +142,7 @@ describe('Tests of route patch /users', () => {
                 .patch(`/users/${createdUserId}`)
                 .send(users_mock_1.updateUser);
             expect(status).to.be.equal(200);
-            // expect(body).to.include(updateUser);
-            // createdUserId = body.id;
+            expect(body).to.include(users_mock_1.updateUser);
         });
     });
 });

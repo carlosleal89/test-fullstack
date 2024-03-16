@@ -23,9 +23,25 @@ class UserService {
             try {
                 const allUsers = yield this.userModel.getUsers();
                 if (!allUsers) {
-                    return { status: 'NOT_FOUND', data: { message: 'No users found.' } };
+                    return { status: 'NO_CONTENT', data: { message: '' } };
                 }
                 return { status: 'SUCCESSFUL', data: allUsers };
+            }
+            catch (error) {
+                console.error('ERROR: ', error.message);
+                return { status: 'INTERNAL_SERVER_ERROR',
+                    data: { message: error.message } };
+            }
+        });
+    }
+    getUserById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const userById = yield this.userModel.getUserById(id);
+                if (!userById) {
+                    return { status: 'NO_CONTENT', data: { message: '' } };
+                }
+                return { status: 'SUCCESSFUL', data: userById };
             }
             catch (error) {
                 console.error('ERROR: ', error.message);

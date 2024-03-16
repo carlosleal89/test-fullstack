@@ -36,4 +36,15 @@ services:
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"] 
       timeout: 10s
-      retries: 5    
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: client_uol
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app-frontend
+    depends_on:
+      - backend
