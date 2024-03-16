@@ -55,9 +55,7 @@ function UserForm() {
         reqBody.status,
         reqBody.cpf
         );
-      if (validateError) {
-        console.log(validateError);
-        
+      if (validateError) {        
         Swal.fire({
           title: 'Verifique os dados!',
           text: validateError.message,
@@ -71,6 +69,14 @@ function UserForm() {
       } else {        
         await api.patch(`users/${userData.id}`, reqBody);        
       }
+      Swal.fire({
+        title: 'Sucesso!',
+        text: location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        history.push('/');
+      });
     } catch (error: any) {
       console.error(error.message);
       if (error.response.data.message.includes('Validation error')) {
