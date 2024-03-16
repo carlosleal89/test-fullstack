@@ -8,14 +8,16 @@ import './App.css';
 
 function App() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="">
       <Header />
-      <h1 className="font-bold text-[2rem]">Painel de Clientes</h1>
-      <Switch>
-        <Route exact path='/' component={ Home } />
-        <Route exact path='/user/:id' component={ EditUser } />
-        <Route exact path='/new-user' component={ CreateUser } />
-      </Switch>
+      <div className="mt-20 ml-40">
+        <h1 className="font-bold text-[2rem]">Painel de Clientes</h1>
+        <Switch>
+          <Route exact path='/' component={ Home } />
+          <Route exact path='/user/:id' component={ EditUser } />
+          <Route exact path='/new-user' component={ CreateUser } />
+        </Switch>
+      </div>
     </div>
   );
 }
