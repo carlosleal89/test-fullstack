@@ -58,7 +58,7 @@ function Home() {
             </div>
             <button
               onClick={() => handleClick(`/user/${userEl.id}`)}
-              className="ml-auto w-fit bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
+              className="flex items-center justify-center ml-auto mt-auto mb-auto w-40 h-9 bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
                 Editar
             </button>
           </div>
