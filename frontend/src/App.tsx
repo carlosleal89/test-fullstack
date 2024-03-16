@@ -10,8 +10,9 @@ function App() {
   return (
     <div className="">
       <Header />
-      <div className="mt-20 ml-40">
+      <div className="mt-20 ml-40 mr-40">
         <h1 className="font-bold text-[2rem]">Painel de Clientes</h1>
+        <div className="mt-10 border-b"></div>
         <Switch>
           <Route exact path='/' component={ Home } />
           <Route exact path='/user/:id' component={ EditUser } />
