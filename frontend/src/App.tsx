@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="">
+    <div>
       <Header />
       <div className="mt-20 ml-40 mr-40">
         <h1 className="font-bold text-[2rem]">Painel de Clientes</h1>

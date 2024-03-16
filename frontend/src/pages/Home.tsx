@@ -29,11 +29,13 @@ function Home() {
 
   return (
     <div className="home_container">      
-      <div>
-        <h3>Listagem de usuários</h3>
-        <p>Escolha um cliente para visualizar os detalhes</p>
+      <div className="mt-10 mb-10 flex justify-between">
+        <div>
+          <h2 className="text-xl font-semibold">Listagem de usuários</h2>
+          <p className="mt-2 text-gray-400">Escolha um cliente para visualizar os detalhes</p>
+        </div>
         <button
-          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
+          className="mt-auto mb-auto h-10 w-30 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-1 px-4 rounded"
           onClick={() => handleClick('/new-user')}>
             Novo Cliente
         </button>
@@ -48,7 +50,7 @@ function Home() {
             <p>{ userEl.status }</p>
             <button
               onClick={() => handleClick(`/user/${userEl.id}`)}
-              className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
+              className="bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
                 Editar
             </button>
           </div>
