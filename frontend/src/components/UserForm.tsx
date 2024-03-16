@@ -92,8 +92,8 @@ function UserForm() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center">
+      <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
         <label htmlFor="name" />
         <input type="text" id="name" placeholder="Nome"
           name="name" value={userData.name} onChange={handleChange} />
@@ -119,8 +119,16 @@ function UserForm() {
           <option value="Aguardando ativação">Aguardando ativação</option>
           <option value="Desativado">Desativado</option>
         </select>        
-        <button type="submit" className="button-form">{location}</button>
-        <button onClick={() => history.push('/')}>Voltar</button>
+        <button
+          type="submit"
+          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
+            {location}
+        </button>
+        <button
+          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
+          onClick={() => history.push('/')}>
+            Voltar
+        </button>
       </form>
     </div>
   )

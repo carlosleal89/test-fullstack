@@ -32,7 +32,11 @@ function Home() {
       <div>
         <h3>Listagem de usuários</h3>
         <p>Escolha um cliente para visualizar os detalhes</p>
-        <button onClick={() => handleClick('/new-user')}>Novo Cliente</button>
+        <button
+          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
+          onClick={() => handleClick('/new-user')}>
+            Novo Cliente
+        </button>
       </div>
       {usersList.length > 0 &&
         usersList.map((userEl) => (
