@@ -92,7 +92,7 @@ function UserForm() {
   }
 
   return (
-      <form className="flex flex-col items-start gap-5 w-72" onSubmit={handleSubmit}>
+      <form className="mt-10 flex flex-col items-start gap-5 w-72" onSubmit={handleSubmit}>
         <div className="relative w-72 min-w-[200px] h-10">
           <input
             name="name"
@@ -162,7 +162,7 @@ function UserForm() {
           </label>
         </div>
         
-        <div className=" w-full flex items-center justify-around">
+        <div className="mt-10 w-full flex items-center justify-around">
           <button
             type="submit"
             className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-12 border border-orange-500 hover:border-transparent rounded">
