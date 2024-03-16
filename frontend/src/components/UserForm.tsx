@@ -92,8 +92,8 @@ function UserForm() {
   }
 
   return (
-      <form className="mt-10 flex flex-col items-start gap-5 w-72" onSubmit={handleSubmit}>
-        <div className="relative w-72 min-w-[200px] h-10">
+      <form className="mt-10 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
+        <div className="relative w-full min-w-[200px] h-10">
           <input
             name="name"
             value={userData.name}
@@ -106,7 +106,7 @@ function UserForm() {
               Nome
           </label>
         </div>
-        <div className="relative w-72 min-w-[200px] h-10">
+        <div className="relative w-full min-w-[200px] h-10">
           <input
             name="email"
             value={userData.email}
@@ -119,7 +119,7 @@ function UserForm() {
               Email
           </label>
         </div>
-        <div className="relative w-72 min-w-[200px] h-10">
+        <div className="relative w-full min-w-[200px] h-10">
           <input
             name="cpf"
             value={userData.cpf}
@@ -132,7 +132,7 @@ function UserForm() {
               CPF
           </label>
         </div>
-        <div className="relative w-72 min-w-[200px] h-10">
+        <div className="relative w-full min-w-[200px] h-10">
           <input
             name="phone"
             value={userData.phone}
@@ -145,7 +145,7 @@ function UserForm() {
               Telefone
           </label>
         </div>
-        <div className="relative h-10 w-72 min-w-[200px]">
+        <div className="relative h-10 w-full min-w-[200px]">
           <select
             id="status" name="status" value={userData.status}
             onChange={handleChange}
