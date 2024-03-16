@@ -12,16 +12,17 @@ function Home() {
   const history = useHistory();
   
   useEffect(() => {
-    try {
-      const getUserList = async () => {
+    const getUserList = async () => {
+      try {
         const { data } = await api.get('users/');
         setUsersList(data);
         setIsLoading(false);
-      };
-      getUserList();
-    } catch(error: any) {
-      console.error(error.message)
+      } catch(error: any) {
+      console.error(error.message);
+      setIsLoading(false);
+      }
     }
+    getUserList();
   }, [])
 
   const handleClick = (url: string): void => {
@@ -46,11 +47,11 @@ function Home() {
           <div className="gap-40 mt-5 mb-5 border rounded flex justify-between py-3 px-3" key={userEl.id}>
             <div className="w-1/6">
               <p>{ userEl.name }</p>
-              <p className="text-gray-400">{ userEl.email }</p>
+              <p className="text-gray-400 text-sm ">{ userEl.email }</p>
             </div>
             <div className="w-1/6">
               <p>{ formatCPF(userEl.cpf) }</p>
-              <p className="text-gray-400">{ formatPhoneNumber(userEl.phone) }</p>
+              <p className="text-gray-400 text-sm">{ formatPhoneNumber(userEl.phone) }</p>
             </div >
             <div className="flex mt-auto mb-auto">
             <span className={`flex mt-auto mb-auto flex w-3 h-3 me-3 bg-${setStatusIndicator(userEl.status)} rounded-full`}></span>
