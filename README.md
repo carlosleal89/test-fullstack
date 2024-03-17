@@ -32,6 +32,6 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
      
          docker-compose up --build
      
-    - Acesse o aplicativo em seu navegador em http://localhost:3000
+  2. Acesse o aplicativo em seu navegador em http://localhost:3000
 
 
