@@ -13,25 +13,27 @@
         /users/
 
   - Este endpoint do tipo 'get' retorna uma lista com todos os clientes cadastrados no banco de dados:
-    - exemplo: <br>
-      [<br>
-        {
-          "id": 1,
-          "name": "Alan Wake",
-          "email": "alan@uol.com",
-          "cpf": "06628787066",
-          "phone": "48 99699-9977",
-          "status": "Ativo"
-        },
-        {
-          "id": 2,
-          "name": "Geralt of Rivia",
-          "email": "geralt@uol.com",
-          "cpf": "06628787079",
-          "phone": "89 96789-9879",
-          "status": "Inativo"
-        }
-      ]
+    - exemplo:
+
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Alan Wake",
+      "email": "alan@uol.com",
+      "cpf": "06628787066",
+      "phone": "48 99699-9977",
+      "status": "Ativo"
+    },
+    {
+      "id": 2,
+      "name": "Geralt of Rivia",
+      "email": "geralt@uol.com",
+      "cpf": "06628787079",
+      "phone": "89 96789-9879",
+      "status": "Inativo"
+    }
+  ]
 
   2. **Buscar um cliente pelo id:
         /users/:id
