@@ -6,6 +6,18 @@
   Essa arquitetura foi escolhida de forma a facilitar a compreensão do código, facilitar a manutenção e permitir escalabilidade.
   Para validação dos dados das requisições foi utilizado o Joi.
 
+## Validações das requisições para criar e editar registros:
+  - Nome: Campo requerido. Minimo de 4 caracteres. Não permite caracteres especiais ou numeros.
+  - Email: Campo requerido.
+  - Telefone: Campo requerido. Aceita strings nos formatos 'xx xxxxx-xxxx' ou 'xx xxxx-xxxx'.
+  - CPF: Campo requerido. String com 11 caracteres. Não aceita strings onde todos os caracteres são iguais.
+    - Para este campo optei por não fazer a verificação oficial de CPF onde é feito um calculo com base nos digitos verificadores, visto que é usado dados ficticios.
+  - Status: Campo requerido. Somente aceita os seguintes valores:
+    - Ativo;
+    - Inativo;
+    - Aguardando ativação;
+    - Desativado;
+
 ## API
   Os endpoints criados para api podem ser visualizados abaixo:
 
@@ -76,6 +88,30 @@
     ```json
     {
       "message": "O CPF deve conter 11 digitos."
+    }
+    ```
+
+  4. **Atualizar o registro de um cliente:
+        /user/:id
+
+  - Este endpoint do tipo 'patch' aceita requisições no formato abaixo. E caso algum erro seja encontrado no formato da requisição retorna uma mensagem avisando o que deve ser corrigido. São executadas as mesmas validações para o formato da requisição que o endpoint 'post' /users.
+
+    ```json
+
+    {	
+      "name": "Carlos Leal",
+      "email": "carlos@tst.com",
+      "cpf": "01828654500",
+      "phone": "51 9999-9999",
+      "status": "Ativo"
+    }
+    ```
+
+    - exemplo da mensagem de erro:
+
+    ```json
+    {
+      "message": "\"Telefone\" deve estar no formato (xx) xxxx-xxxx ou (xx) xxxxx-xxxx"
     }
     ```
 
