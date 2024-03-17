@@ -14,7 +14,7 @@
 
   - Este endpoint do tipo 'get' retorna uma lista com todos os clientes cadastrados no banco de dados:
     - exemplo:
-      [
+      [<br>
         {
           "id": 1,
           "name": "Alan Wake",
