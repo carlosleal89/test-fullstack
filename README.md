@@ -2,7 +2,10 @@
 
 ## Descrição:
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+Este aplicativo foi desenvolvido para permitir aos usuários visualizar uma lista de clientes, assim como criar um novo registro de cliente e editar um registro existente.
+A interface do site foi desenvolvido pensando na experiência do usuário, contando com um layout simples e de fácil compreensão.
+A aplicação foi desenvolvida utilizando Docker de forma a facilitar a inicialização dos serviços.
+Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'frontend' e 'backend' é possível encontrar mais informações sobre as tecnologias utilizadas durante o desenvolvimento.
 
 ## Requisitos do Frontend:
 
