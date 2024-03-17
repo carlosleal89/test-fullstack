@@ -3,13 +3,13 @@ export default function setStatusIndicator (status: string): string {
   
   switch (status) {
     case 'Ativo':
-      statusColor = 'green-500';
+      statusColor = 'green-600';
       break;
     case 'Inativo':
-      statusColor = 'red-500';
+      statusColor = 'red-600';
       break;
     case 'Aguardando ativação':
-      statusColor = 'amber-500';
+      statusColor = 'amber-600';
       break;
     case 'Desativado':
       statusColor = 'gray-300';

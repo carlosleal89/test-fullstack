@@ -1,0 +1,15 @@
+.statusGreen {
+  background-color: green;
+};
+
+.statusRed {
+  background-color: red;
+};
+
+.statusOrange {
+  background-color: orange;
+};
+
+.statusGrey {
+  background-color: gray;
+};

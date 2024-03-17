@@ -54,7 +54,7 @@ function Home() {
               <p className="text-gray-400 text-sm">{ formatPhoneNumber(userEl.phone) }</p>
             </div >
             <div className="flex mt-auto mb-auto">
-            <span className={`flex mt-auto mb-auto flex w-3 h-3 me-3 bg-${setStatusIndicator(userEl.status)} rounded-full`}></span>
+              <span className={`flex mt-auto mb-auto flex w-3 h-3 me-3 bg-${setStatusIndicator(userEl.status)} rounded-full`}></span>
               <p className="w-fit text-gray-400">{ userEl.status }</p>
             </div>
             <button
