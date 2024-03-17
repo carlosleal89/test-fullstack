@@ -13,15 +13,15 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
 
 - Visualizar a lista de clientes cadastrados:
 
-<img src="./src/images/home-page.png" alt="Tela principal da aplicação">
+<img src="./frontend/src/images/home-page.png" alt="Tela principal da aplicação">
 
 - Cadastrar um novo cliente:
 
-<img src="./src/images/create-user.png" alt="Tela para criar um novo cliente">
+<img src="./frontend/src/images/create-user.png" alt="Tela para criar um novo cliente">
 
 - Editar um cliente já existente:
 
-<img src="./src/images/edit-user.png" alt="Tela editar um cliente já existente">
+<img src="./frontend/src/images/edit-user.png" alt="Tela editar um cliente já existente">
 
 
 ## Como Executar o Projeto:
