@@ -50,17 +50,17 @@ function Home() {
               <p>{ userEl.name }</p>
               <p className="text-gray-400 text-sm ">{ userEl.email }</p>
             </div>
-            <div className="w-1/6">
+            <div className="lg:w-28 xl:w-36">
               <p>{ formatCPF(userEl.cpf) }</p>
               <p className="text-gray-400 text-sm">{ formatPhoneNumber(userEl.phone) }</p>
             </div >
-            <div className="flex mt-auto mb-auto xl:w-40">
+            <div className="flex mt-auto mb-auto lg:w-28 xl:w-40">
               <div style={{ backgroundColor: `${setStatusIndicator(userEl.status)}`}} className={`flex mt-auto mb-auto flex w-3 h-3 me-3 rounded-full`}></div>
               <p className="w-fit text-gray-400">{ userEl.status }</p>
             </div>
             <button
               onClick={() => handleClick(`/user/${userEl.id}`)}
-              className="flex items-center justify-center ml-auto mt-auto mb-auto w-40 h-9 bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
+              className="flex items-center justify-center ml-auto mt-auto mb-auto lg:w-24 w-40 h-9 bg-transparent hover:bg-amber-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded">
                 Editar
             </button>
           </div>
