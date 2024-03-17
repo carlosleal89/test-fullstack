@@ -4,6 +4,7 @@ import Loading from '../components/Loading';
 import { IUsers } from '../interfaces/IUser';
 import { useHistory } from 'react-router-dom';
 import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
+import '../styles/Home.css';
 import setStatusIndicator from '../utils/SetStatusIndicator';
 
 function Home() {
@@ -54,7 +55,7 @@ function Home() {
               <p className="text-gray-400 text-sm">{ formatPhoneNumber(userEl.phone) }</p>
             </div >
             <div className="flex mt-auto mb-auto">
-              <span className={`flex mt-auto mb-auto flex w-3 h-3 me-3 bg-${setStatusIndicator(userEl.status)} rounded-full`}></span>
+              <div style={{ backgroundColor: `${setStatusIndicator(userEl.status)}`}} className={`flex mt-auto mb-auto flex w-3 h-3 me-3 rounded-full`}></div>
               <p className="w-fit text-gray-400">{ userEl.status }</p>
             </div>
             <button
