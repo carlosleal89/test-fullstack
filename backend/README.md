@@ -18,6 +18,10 @@
     - Aguardando ativação;
     - Desativado;
 
+## Banco de dados
+  Foi utilizado o banco de dados MySql rodando em um container Docker.
+  O banco possui uma tabela que armazena os dados dos clientes cadastrados.
+
 ## API
   Os endpoints criados para api podem ser visualizados abaixo:
 
@@ -75,9 +79,9 @@
     ```json
 
     {	
-      "name": "Carlos Leal",
-      "email": "carlos@tst.com",
-      "cpf": "01828654500",
+      "name": "Jill Valentine",
+      "email": "jill@uol.com",
+      "cpf": "09282587412",
       "phone": "51 9999-9999",
       "status": "Ativo"
     }
@@ -115,4 +119,9 @@
     }
     ```
 
-    
+## Testes:
+  Os testes foram desenvolvidos utilizando Mocha para garantir o funcionamento das rotas implementadas no backend. 
+  Além do Mocha, as seguintes bibliotecas foram utilizadas:
+   - Chai: Para realizar as asserções;
+   - Chai-http: Para realizar as requisições;
+   - Sinon: Para mocks e stubs para simular o comportamento de funções;
