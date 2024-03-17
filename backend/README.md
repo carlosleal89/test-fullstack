@@ -35,6 +35,8 @@
     }
   ]
 
+  ```
+
   2. **Buscar um cliente pelo id:
         /users/:id
 
