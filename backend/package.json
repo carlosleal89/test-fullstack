@@ -2,13 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "build/server.js",
   "scripts": {
+    "prestart": "npm run db:reset",
     "start": "nodemon .",
-    "dev": "ts-node-dev .",
+    "predev": "npm run db:reset",
+    "dev": "ts-node-dev src/server.ts",
     "test": "ts-mocha src/tests/*.ts --exit",
     "build": "tsc",
-    "predev": "npx -y tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db:reset": "npx -y tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "lint": "eslint ./src --ext .ts"
   },
   "keywords": [],
