@@ -25,6 +25,7 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
 
 
 ## Como Executar o Projeto:
+  O projeto esta configurado para iniciar via Docker-compose.
 
 ## Via Docker
 
@@ -33,5 +34,32 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
          docker-compose up --build
      
   2. Acesse o aplicativo em seu navegador em http://localhost:3000
+
+
+## Executar localmente
+  Para executar localmente é necessário iniciar o container do banco de dados:
+  1. Execute o comando a seguir no diretório raiz:
+       docker-compose up database
+
+  2. Acesse o diretório 'backend':
+    - instale as dependências:
+       npm install
+
+  3. Renomeie o arquivo ' .env.example ' e descomente as variáveis de ambiente;
+
+  4. Acesse o arquivo 'backend/src/database/config/database.ts' e descomente a propriedade 'port' na linha 10.
+
+  5. Execute o comando:
+       npm start
+
+  6. Acesse o diretório 'frontend':
+    - instale as dependências:
+      npm install
+
+  7. Execute o comando:
+       npm start
+
+## Atenção:
+  Para iniciar o projeto novamente via Docker é necessário desfazer os passos 3 e 4.
 
 
