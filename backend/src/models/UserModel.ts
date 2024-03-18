@@ -11,7 +11,7 @@ export default class UserModel implements IUsersModel {
       if (allUsers.length === 0) return null;
 
       return allUsers as IUsers[];
-      
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch(error: any) {
       console.error('Error getting the users list: ', error.message);      
       throw new Error(`Error getting the users list: ${error.message}`);
@@ -28,7 +28,7 @@ export default class UserModel implements IUsersModel {
       if (!userById) return null;
 
       return userById as IUsers;
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch(error: any) {
       console.error('Error getting the user by id: ', error.message);      
       throw new Error(`Error getting the user by id: ${error.message}`);
@@ -46,7 +46,7 @@ export default class UserModel implements IUsersModel {
           .create({name, email, cpf, phone, status});
   
         return dbData;
-  
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.error('Error creating a new user: ', error.message);
         throw new Error(`Error creating a new user: ${error.message}`);
@@ -63,7 +63,7 @@ export default class UserModel implements IUsersModel {
   ): Promise<IUsers>
  {
   try {
-    const dbData = await this.model
+    await this.model
       .update({name, email, cpf, phone, status}, {
         where: {
           id,
@@ -71,7 +71,7 @@ export default class UserModel implements IUsersModel {
       });
 
     return { id, name, email, cpf, phone, status };
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error updating the user: ', error.message);
     throw new Error(`Error updating the user: ${error.message}`);
