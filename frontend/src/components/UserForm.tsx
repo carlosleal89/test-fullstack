@@ -3,8 +3,8 @@ import api from '../api';
 import { useHistory, useLocation } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 import { validateUser } from '../validations/inputValidator';
-import Swal from 'sweetalert2';
 import Loading from './Loading';
+import { sendAlert } from '../utils/SendAlert';
 
 function UserForm() {
   const history = useHistory();
@@ -55,13 +55,8 @@ function UserForm() {
       reqBody.status,
       reqBody.cpf
       );
-      if (validateError) {        
-        Swal.fire({
-          title: 'Verifique os dados!',
-          text: validateError.message,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        });
+      if (validateError) {
+        sendAlert('Verifique os dados!', validateError.message, 'error')
         return;
       }
       try {
@@ -71,32 +66,21 @@ function UserForm() {
         } else {        
           await api.patch(`users/${userData.id}`, reqBody);        
         }
-        Swal.fire({
-          title: 'Sucesso!',
-          text: location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-        }).then(() => {
+        sendAlert('Sucesso!',
+          location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!', 'success')
+        .then(() => {
           history.push('/');
         });
         setIsLoading(false);
       } catch (error: any) {
         console.error(error.message);
-          Swal.fire({
-            title: 'Erro!',
-            text: 'Ocorreu um erro interno no servidor. Por favor, tente novamente.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-          }).then(() => {
+          sendAlert('Erro!',
+            'Ocorreu um erro interno no servidor. Por favor, tente novamente.', 'error')
+          .then(() => {
             setIsLoading(false);
           });
           if (error.response.data.message.includes('Validation error')) {
-          Swal.fire({
-            title: 'Verifique os dados!',
-            text: 'CPF já cadastrado.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-          });
+          sendAlert('Verifique os dados!', 'CPF já cadastrado.', 'error');
         }
       }
   }
