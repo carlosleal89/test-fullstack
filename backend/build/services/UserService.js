@@ -26,6 +26,7 @@ class UserService {
                     return { status: 'NO_CONTENT', data: { message: '' } };
                 }
                 return { status: 'SUCCESSFUL', data: allUsers };
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             }
             catch (error) {
                 console.error('ERROR: ', error.message);
@@ -42,6 +43,7 @@ class UserService {
                     return { status: 'NO_CONTENT', data: { message: '' } };
                 }
                 return { status: 'SUCCESSFUL', data: userById };
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             }
             catch (error) {
                 console.error('ERROR: ', error.message);
@@ -59,6 +61,7 @@ class UserService {
                 }
                 const newUser = yield this.userModel.createUser(name, email, cpf, phone, status);
                 return { status: 'CREATED', data: newUser };
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any   
             }
             catch (error) {
                 console.error('Error creating a new user: ', error.message);
@@ -76,6 +79,7 @@ class UserService {
                 }
                 const updatedUser = yield this.userModel.updateUser(id, name, email, cpf, phone, status);
                 return { status: 'SUCCESSFUL', data: updatedUser };
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any   
             }
             catch (error) {
                 console.error('Error creating a updating user: ', error.message);

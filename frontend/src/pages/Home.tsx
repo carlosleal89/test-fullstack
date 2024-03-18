@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
 import '../styles/Home.css';
 import setStatusIndicator from '../utils/SetStatusIndicator';
-import Swal from 'sweetalert2';
 import { sendAlert } from '../utils/SendAlert';
 
 function Home() {
@@ -20,6 +19,7 @@ function Home() {
         const { data } = await api.get('users/');
         setUsersList(data);
         setIsLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch(error: any) {
       console.error(error.message);
       sendAlert('Erro!',

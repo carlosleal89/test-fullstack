@@ -24,6 +24,7 @@ class UserModel {
                 if (allUsers.length === 0)
                     return null;
                 return allUsers;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             }
             catch (error) {
                 console.error('Error getting the users list: ', error.message);
@@ -43,6 +44,7 @@ class UserModel {
                 if (!userById)
                     return null;
                 return userById;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             }
             catch (error) {
                 console.error('Error getting the user by id: ', error.message);
@@ -56,6 +58,7 @@ class UserModel {
                 const dbData = yield this.model
                     .create({ name, email, cpf, phone, status });
                 return dbData;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             }
             catch (error) {
                 console.error('Error creating a new user: ', error.message);
@@ -66,13 +69,14 @@ class UserModel {
     updateUser(id, name, email, cpf, phone, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbData = yield this.model
+                yield this.model
                     .update({ name, email, cpf, phone, status }, {
                     where: {
                         id,
                     },
                 });
                 return { id, name, email, cpf, phone, status };
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             }
             catch (error) {
                 console.error('Error updating the user: ', error.message);

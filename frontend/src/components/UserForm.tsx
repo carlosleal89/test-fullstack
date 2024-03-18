@@ -33,6 +33,7 @@ function UserForm() {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setUserData((prevValues: any) => ({
       ...prevValues,
       [name]: value,
@@ -72,6 +73,7 @@ function UserForm() {
           history.push('/');
         });
         setIsLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.error(error.message);
           sendAlert('Erro!',
