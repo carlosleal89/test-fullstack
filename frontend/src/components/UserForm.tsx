@@ -17,9 +17,7 @@ function UserForm() {
     cpf: '',
     phone: '',
     status: 'Ativo',
-  });  
-  
-  // tipar o state
+  });
 
   useEffect(() => {
     if (pathname === '/new-user') {
@@ -28,6 +26,7 @@ function UserForm() {
       setLocation('Editar');      
       setUserData({...userById})
     }    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userById])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -40,21 +39,20 @@ function UserForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    try {
-      const reqBody = {
-        name: userData.name,
-        email: userData.email,
-        cpf: userData.cpf,
-        phone: userData.phone,
-        status: userData.status
-      }
-      const validateError = validateUser(
-        reqBody.name,
-        reqBody.email,
-        reqBody.phone,
-        reqBody.status,
-        reqBody.cpf
-        );
+    const reqBody = {
+      name: userData.name,
+      email: userData.email,
+      cpf: userData.cpf,
+      phone: userData.phone,
+      status: userData.status
+    }
+    const validateError = validateUser(
+      reqBody.name,
+      reqBody.email,
+      reqBody.phone,
+      reqBody.status,
+      reqBody.cpf
+      );
       if (validateError) {        
         Swal.fire({
           title: 'Verifique os dados!',
@@ -64,31 +62,37 @@ function UserForm() {
         });
         return;
       }
-      if (location === 'Criar') {
-        await api.post('users/', reqBody);
-      } else {        
-        await api.patch(`users/${userData.id}`, reqBody);        
-      }
-      Swal.fire({
-        title: 'Sucesso!',
-        text: location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      }).then(() => {
-        history.push('/');
-      });
-    } catch (error: any) {
-      console.error(error.message);
-      if (error.response.data.message.includes('Validation error')) {
+      try {
+        if (location === 'Criar') {
+          await api.post('users/', reqBody);
+        } else {        
+          await api.patch(`users/${userData.id}`, reqBody);        
+        }
         Swal.fire({
-          title: 'Verifique os dados!',
-          text: 'CPF já cadastrado.',
-          icon: 'error',
+          title: 'Sucesso!',
+          text: location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!',
+          icon: 'success',
           confirmButtonText: 'OK',
+        }).then(() => {
+          history.push('/');
         });
+      } catch (error: any) {
+        console.error(error.message);
+          Swal.fire({
+            title: 'Erro!',
+            text: 'Ocorreu um erro interno no servidor. Por favor, tente novamente.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+          if (error.response.data.message.includes('Validation error')) {
+          Swal.fire({
+            title: 'Verifique os dados!',
+            text: 'CPF já cadastrado.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
       }
-      
-    }
   }
 
   return (

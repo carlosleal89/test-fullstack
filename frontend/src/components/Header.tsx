@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/Header.css';
-import uolLogo from '../images/uol-universo-on-line.svg';
 import logo from '../images/UOL.svg';
 
 function Header() {
