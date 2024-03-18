@@ -43,12 +43,12 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
          docker-compose up database
 
   2. Acesse o diretório 'backend':
-  
-    - instale as dependências:
+
+  - instale as dependências:
 
          npm install
 
-  3. Renomeie o arquivo ' .env.example ' e descomente as variáveis de ambiente;
+  3. Renomeie o arquivo ' .env.example ' para '.env' e descomente as variáveis de ambiente;
 
   4. Acesse o arquivo 'backend/src/database/config/database.ts' e descomente a propriedade 'port' na linha 10.
 
