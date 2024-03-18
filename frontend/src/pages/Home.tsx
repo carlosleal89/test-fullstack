@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
 import '../styles/Home.css';
 import setStatusIndicator from '../utils/SetStatusIndicator';
+import Swal from 'sweetalert2';
 
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
@@ -20,6 +21,12 @@ function Home() {
         setIsLoading(false);
       } catch(error: any) {
       console.error(error.message);
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Ocorreu um erro interno no servidor. Por favor, tente novamente.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
       setIsLoading(false);
       }
     }

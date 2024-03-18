@@ -4,12 +4,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 import { validateUser } from '../validations/inputValidator';
 import Swal from 'sweetalert2';
+import Loading from './Loading';
 
 function UserForm() {
   const history = useHistory();
   const { pathname } = useLocation();
   const { userById } = useContext(UserContext);
   const [ location, setLocation ] = useState('');
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ userData, setUserData] = useState({
     id: 0,
     name: '',
@@ -63,6 +65,7 @@ function UserForm() {
         return;
       }
       try {
+        setIsLoading(true);
         if (location === 'Criar') {
           await api.post('users/', reqBody);
         } else {        
@@ -76,6 +79,7 @@ function UserForm() {
         }).then(() => {
           history.push('/');
         });
+        setIsLoading(false);
       } catch (error: any) {
         console.error(error.message);
           Swal.fire({
@@ -83,6 +87,8 @@ function UserForm() {
             text: 'Ocorreu um erro interno no servidor. Por favor, tente novamente.',
             icon: 'error',
             confirmButtonText: 'OK',
+          }).then(() => {
+            setIsLoading(false);
           });
           if (error.response.data.message.includes('Validation error')) {
           Swal.fire({
@@ -96,7 +102,12 @@ function UserForm() {
   }
 
   return (
-      <form className="mt-10 mb-5 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
+    <>
+    {isLoading && <Loading />}
+    {
+      !isLoading
+        &&
+    <form className="mt-10 mb-5 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
         <div className="relative w-full min-w-[200px] h-10">
           <input
             name="name"
@@ -179,6 +190,8 @@ function UserForm() {
           </button>          
         </div>     
       </form>
+    }
+      </>
   )
 }
 
