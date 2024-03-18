@@ -20,18 +20,4 @@ describe("Tests of component Home.", () => {
       expect(newUserButton).toBeInTheDocument();
     });
   });
-
-  // it("should have a button 'Criar'.", async () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <UserForm />
-  //     </MemoryRouter>
-  //   );
-
-  //   await waitFor(() => {
-  //     const createButton = screen.getAllByRole('button');
-  //     createButton[0].click();
-  //     expect("Verifique os dados!").toBeInTheDocument();
-  //   });
-  // });
 })

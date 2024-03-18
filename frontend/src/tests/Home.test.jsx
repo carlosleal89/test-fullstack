@@ -6,8 +6,16 @@ import api from "../api";
 
 
 describe("Tests of component Home.", () => {
+  it("should return clients list'.", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(usersListMock)
+    });
+
+    const data = await api.get('users/');
+
+    expect(data.data).toEqual(usersListMock);
+  });
   it("should have 'Listagem de usuários'.", async () => {
-    // jest.spyOn(api.get('users/')).mockResolvedValueOnce({ message: usersListMock });
 
     render(
       <MemoryRouter>
@@ -18,11 +26,6 @@ describe("Tests of component Home.", () => {
     await waitFor(() => {
       const title = screen.getByText('Listagem de usuários');
       expect(title).toBeInTheDocument();
-
-      // const button = screen.getAllByText('Editar');
-      // expect(button[0]).toBeInTheDocument();
-
-      // button[0].click();
     });
   });
 
