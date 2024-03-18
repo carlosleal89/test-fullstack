@@ -17,11 +17,7 @@ describe("Tests of component Home.", () => {
   });
   it("should have 'Listagem de usuários'.", async () => {
 
-    render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>
-    );
+    render(<Home />);
 
     await waitFor(() => {
       const title = screen.getByText('Listagem de usuários');
@@ -30,11 +26,7 @@ describe("Tests of component Home.", () => {
   });
 
   it("should have a button 'Novo Cliente'.", async () => {
-    render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>
-    );
+    render(<Home />);
 
     await waitFor(() => {
       const newUserButton = screen.getByText('Novo Cliente');
