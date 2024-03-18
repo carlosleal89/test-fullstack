@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Header />
-        <div className="mt-20 ml-40 mr-40">
+        <div className="md:ml-2 md:mr-2 lg:ml-5 lg:mr-5 mt-20 xl:ml-40 xl:mr-40">
           <div className="flex">
             <img src={ userIcon } alt="user icon" id="user-icon" className="mr-5 w-10" />
             <h1 className="font-bold text-[2rem]">Painel de Clientes</h1>

@@ -1,15 +1,15 @@
-.statusGreen {
+.active-status {
   background-color: green;
 };
 
-.statusRed {
-  background-color: red;
-};
-
-.statusOrange {
+.inactive-status {
   background-color: orange;
 };
 
-.statusGrey {
+.waiting-status {
+  background-color: black;
+};
+
+.deactivated-status {
   background-color: gray;
 };
