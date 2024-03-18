@@ -57,7 +57,8 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
          npm start
 
   6. Acesse o diretório 'frontend':
-    - instale as dependências:
+
+  - instale as dependências:
 
          npm install
 
