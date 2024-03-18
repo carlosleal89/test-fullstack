@@ -92,7 +92,7 @@ function UserForm() {
   }
 
   return (
-      <form className="mt-10 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
+      <form className="mt-10 mb-5 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
         <div className="relative w-full min-w-[200px] h-10">
           <input
             name="name"
