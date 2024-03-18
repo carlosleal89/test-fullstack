@@ -125,3 +125,11 @@
    - Chai: Para realizar as asserções;
    - Chai-http: Para realizar as requisições;
    - Sinon: Para mocks e stubs para simular o comportamento de funções;
+
+  Para executar os testes siga as instruções abaixo:
+
+  1. Acesse o container do serviço api_uol:
+      docker exec -it api_uol bash
+
+  2. Rode o script de testes:
+      npm run test

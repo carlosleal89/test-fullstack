@@ -16,3 +16,11 @@
     - Inativo;
     - Aguardando ativação;
     - Desativado;
+
+## Testes:
+  Os testes do frontend foram desenvolvidos com o framework Jest. 
+  Para executar os testes siga os passos abaixo:
+
+  - Inicie os containers com Docker compose;
+  - Acesse o diretório 'frontend' e rode ' npm install ';
+  - Execute ' npm run test ';
