@@ -11,6 +11,7 @@ const defaultUserContext: IUserContext = {
     phone: '',
     status: UserStatus.AguardandoAtivacao,
   },
+  // eslint-disable-next-line
   setUserById: () => {}
 };
 

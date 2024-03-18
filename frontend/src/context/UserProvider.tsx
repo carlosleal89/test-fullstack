@@ -17,8 +17,6 @@ function UserProvider({ children }: UserProviderProps) {
     setUserById
   }), [userById])
 
-  // passar o estado e setState no array do useMemo?
-
   return (
     <UserContext.Provider value={ useContextValues }>
       { children }

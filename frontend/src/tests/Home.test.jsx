@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import Home from "../pages/Home";
-import { MemoryRouter } from "react-router-dom";
 import { usersListMock } from '../mocks/usersMock';
 import api from "../api";
 
@@ -34,7 +33,7 @@ describe("Tests of component Home.", () => {
     });
   });
 
-  it("should have a client named 'Geralt Of Rivia'.", async () => {
+  it("should have a client named 'Geralt of Rivia'.", async () => {
     render(
         <Home />
     );

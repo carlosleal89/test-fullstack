@@ -1,7 +1,7 @@
 ## Backend
   O backend da aplicação foi desenvolvido com Node e Typescript. Como ORM foi utilizado o 
   Sequelize e para gerenciamente das rotas o Express.
-  A arquitetura MSC foi utilizada de forma a separarar as responsabilidades em três camadas:
+  A arquitetura MSC foi utilizada de forma a separar as responsabilidades em três camadas:
    Model, Service e Controller.
   Essa arquitetura foi escolhida de forma a facilitar a compreensão do código, facilitar a manutenção e permitir escalabilidade.
   Para validação dos dados das requisições foi utilizado o Joi.
