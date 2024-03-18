@@ -43,6 +43,7 @@ Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'fronten
          docker-compose up database
 
   2. Acesse o diretório 'backend':
+  
     - instale as dependências:
 
          npm install
