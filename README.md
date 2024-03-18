@@ -3,10 +3,10 @@
 ## Descrição:
 
 Este aplicativo foi desenvolvido para permitir aos usuários visualizar uma lista de clientes, assim como criar um novo registro de cliente e editar um registro existente.
-A interface do site foi desenvolvido pensando na experiência do usuário, contando com um layout simples e de fácil compreensão.
+A interface do site foi desenvolvida pensando na experiência do usuário, contando com um layout simples e de fácil compreensão.
 A aplicação foi desenvolvida utilizando Docker de forma a facilitar a inicialização dos serviços.
-Durante o desenvolvimento foram adotadas algumas metodologias ágeis como quadro de Kambam para visualizar e manter organização dos requisitos e TDD no desenvolvimento de algumas rotas da API,
-além do uso do Git para controle de versão.
+Durante o desenvolvimento foram adotadas algumas metodologias ágeis como quadro de Kanban para visualizar e manter organização dos requisitos e TDD no desenvolvimento de algumas rotas da API, além do uso do Git para controle de versão.
+
 Para iniciar o aplicativo siga os passos abaixo. Dentro dos diretórios 'frontend' e 'backend' é possível encontrar mais informações sobre as tecnologias utilizadas durante o desenvolvimento.
 
 ## Funcionalidades principais:
