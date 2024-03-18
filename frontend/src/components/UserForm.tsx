@@ -3,13 +3,15 @@ import api from '../api';
 import { useHistory, useLocation } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 import { validateUser } from '../validations/inputValidator';
-import Swal from 'sweetalert2';
+import Loading from './Loading';
+import { sendAlert } from '../utils/SendAlert';
 
 function UserForm() {
   const history = useHistory();
   const { pathname } = useLocation();
   const { userById } = useContext(UserContext);
   const [ location, setLocation ] = useState('');
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ userData, setUserData] = useState({
     id: 0,
     name: '',
@@ -17,9 +19,7 @@ function UserForm() {
     cpf: '',
     phone: '',
     status: 'Ativo',
-  });  
-  
-  // tipar o state
+  });
 
   useEffect(() => {
     if (pathname === '/new-user') {
@@ -28,10 +28,12 @@ function UserForm() {
       setLocation('Editar');      
       setUserData({...userById})
     }    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userById])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setUserData((prevValues: any) => ({
       ...prevValues,
       [name]: value,
@@ -40,59 +42,58 @@ function UserForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    try {
-      const reqBody = {
-        name: userData.name,
-        email: userData.email,
-        cpf: userData.cpf,
-        phone: userData.phone,
-        status: userData.status
-      }
-      const validateError = validateUser(
-        reqBody.name,
-        reqBody.email,
-        reqBody.phone,
-        reqBody.status,
-        reqBody.cpf
-        );
-      if (validateError) {        
-        Swal.fire({
-          title: 'Verifique os dados!',
-          text: validateError.message,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        });
+    const reqBody = {
+      name: userData.name,
+      email: userData.email,
+      cpf: userData.cpf,
+      phone: userData.phone,
+      status: userData.status
+    }
+    const validateError = validateUser(
+      reqBody.name,
+      reqBody.email,
+      reqBody.phone,
+      reqBody.status,
+      reqBody.cpf
+      );
+      if (validateError) {
+        sendAlert('Verifique os dados!', validateError.message, 'error')
         return;
       }
-      if (location === 'Criar') {
-        await api.post('users/', reqBody);
-      } else {        
-        await api.patch(`users/${userData.id}`, reqBody);        
-      }
-      Swal.fire({
-        title: 'Sucesso!',
-        text: location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      }).then(() => {
-        history.push('/');
-      });
-    } catch (error: any) {
-      console.error(error.message);
-      if (error.response.data.message.includes('Validation error')) {
-        Swal.fire({
-          title: 'Verifique os dados!',
-          text: 'CPF já cadastrado.',
-          icon: 'error',
-          confirmButtonText: 'OK',
+      try {
+        setIsLoading(true);
+        if (location === 'Criar') {
+          await api.post('users/', reqBody);
+        } else {        
+          await api.patch(`users/${userData.id}`, reqBody);        
+        }
+        sendAlert('Sucesso!',
+          location === 'Criar' ? 'Usuário criado!' : 'Dados atualizados!', 'success')
+        .then(() => {
+          history.push('/');
         });
+        setIsLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        console.error(error.message);
+          sendAlert('Erro!',
+            'Ocorreu um erro interno no servidor. Por favor, tente novamente.', 'error')
+          .then(() => {
+            setIsLoading(false);
+          });
+          if (error.response.data.message.includes('Validation error')) {
+          sendAlert('Verifique os dados!', 'CPF já cadastrado.', 'error');
+        }
       }
-      
-    }
   }
 
   return (
-      <form className="mt-10 mb-5 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
+    <>
+    {isLoading && <Loading />}
+    {
+      !isLoading
+        &&
+    <form className="mt-10 mb-5 flex flex-col items-start gap-5 w-80" onSubmit={handleSubmit}>
         <div className="relative w-full min-w-[200px] h-10">
           <input
             name="name"
@@ -175,6 +176,8 @@ function UserForm() {
           </button>          
         </div>     
       </form>
+    }
+      </>
   )
 }
 

@@ -17,7 +17,7 @@ export default class UserService {
       }
 
       return { status: 'SUCCESSFUL', data: allUsers };
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error('ERROR: ', error.message);
       return { status: 'INTERNAL_SERVER_ERROR',
@@ -33,7 +33,7 @@ export default class UserService {
       }
 
       return { status: 'SUCCESSFUL', data: userById };
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch(error: any) {
       console.error('ERROR: ', error.message);
       return { status: 'INTERNAL_SERVER_ERROR',
@@ -58,7 +58,7 @@ export default class UserService {
           name, email, cpf, phone, status);
         
         return { status: 'CREATED', data: newUser };
-         
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any   
       } catch (error: any) {
         console.error('Error creating a new user: ', error.message);
         return { status: 'INTERNAL_SERVER_ERROR',
@@ -83,7 +83,7 @@ export default class UserService {
           id, name, email, cpf, phone, status);
         
         return { status: 'SUCCESSFUL', data: updatedUser };
-         
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any   
       } catch (error: any) {
         console.error('Error creating a updating user: ', error.message);
         return { status: 'INTERNAL_SERVER_ERROR',

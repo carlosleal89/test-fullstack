@@ -1,6 +1,7 @@
 import app from './app';
+import * as dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 const EXPRESS_PORT = process.env.EXPRESS_PORT || 3001;
 

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
 import '../styles/Home.css';
 import setStatusIndicator from '../utils/SetStatusIndicator';
+import { sendAlert } from '../utils/SendAlert';
 
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
@@ -18,8 +19,11 @@ function Home() {
         const { data } = await api.get('users/');
         setUsersList(data);
         setIsLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch(error: any) {
       console.error(error.message);
+      sendAlert('Erro!',
+        'Ocorreu um erro interno no servidor. Por favor, tente novamente.', 'error');
       setIsLoading(false);
       }
     }

@@ -1,7 +1,6 @@
 import { createUserValidator } from './schemas';
-import { ServiceResponseError } from '../interfaces/ServiceResponse';
 
-export const validateUser = ( name: any, email: any, phone: any, status: any ) => {
+export const validateUser = ( name: string, email: string, phone: string, status: string ) => {
   const options = {
     abortEarly: false, // show all the error messages, not only the first one
 };

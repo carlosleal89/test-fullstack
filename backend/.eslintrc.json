@@ -1,14 +1,23 @@
 {
   "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "env": {
-    "es2020": true
+    "es2020": true,
+    "node": true
   },
-  "extends": "trybe-backend",
-  "rules": {
-    "sonarjs/no-duplicate-string": [
-      "error",
-      5
-    ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "ignorePatterns": [
+    "build/",
+    "mocks/",
+    "node_modules/",
+    "src/tests"
+  ],
+  "rules": {    
     "sonarjs/prefer-object-literal": "off",
     "mocha/no-setup-in-describe": "off"
   }

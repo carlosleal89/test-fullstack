@@ -13,7 +13,7 @@ app.use((0, cors_1.default)({
 app.use(express_1.default.json());
 app.use(routes_1.default);
 app.get('/health', (req, res) => res.status(200).json({ message: "Yeah, it's working." }));
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     console.log('Error middleware', err.message);
     return res.status(500).json({ message: 'Internal server error' });
 });

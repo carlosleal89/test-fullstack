@@ -1,4 +1,4 @@
-import { Model, QueryInterface, DataTypes, Sequelize } from 'sequelize'; 
+import { Model, QueryInterface, DataTypes } from 'sequelize'; 
 
 import { IUsers } from '../../interfaces/IUsers';
 
