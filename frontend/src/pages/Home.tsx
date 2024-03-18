@@ -7,6 +7,7 @@ import { formatPhoneNumber, formatCPF } from '../utils/FormatData';
 import '../styles/Home.css';
 import setStatusIndicator from '../utils/SetStatusIndicator';
 import Swal from 'sweetalert2';
+import { sendAlert } from '../utils/SendAlert';
 
 function Home() {
   const [ usersList, setUsersList ] = useState<IUsers[]>([]);
@@ -21,12 +22,8 @@ function Home() {
         setIsLoading(false);
       } catch(error: any) {
       console.error(error.message);
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Ocorreu um erro interno no servidor. Por favor, tente novamente.',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
+      sendAlert('Erro!',
+        'Ocorreu um erro interno no servidor. Por favor, tente novamente.', 'error');
       setIsLoading(false);
       }
     }
