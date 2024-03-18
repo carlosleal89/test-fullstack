@@ -19,5 +19,5 @@ describe("Tests of component Home.", () => {
       const newUserButton = screen.getByText('Novo usuário');
       expect(newUserButton).toBeInTheDocument();
     });
-  });
+  });  
 })

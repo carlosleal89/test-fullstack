@@ -15,7 +15,7 @@ describe("Tests of component Home.", () => {
 
     expect(data.data).toEqual(usersListMock);
   });
-  it("should have 'Listagem de usuários'.", async () => {
+  it("should have the text 'Listagem de usuários'.", async () => {
 
     render(<Home />);
 
@@ -30,6 +30,17 @@ describe("Tests of component Home.", () => {
 
     await waitFor(() => {
       const newUserButton = screen.getByText('Novo Cliente');
+      expect(newUserButton).toBeInTheDocument();
+    });
+  });
+
+  it("should have a client named 'Geralt Of Rivia'.", async () => {
+    render(
+        <Home />
+    );
+
+    await waitFor(() => {
+      const newUserButton = screen.getByText('Geralt of Rivia');
       expect(newUserButton).toBeInTheDocument();
     });
   });
