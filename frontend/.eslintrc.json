@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    // Adicione aqui as regras personalizadas
+  },
+  "ignorePatterns": [
+    "node_modules/"
+  ]
+}

@@ -1,7 +1,7 @@
 import { createUserValidator } from './schemas';
 
 export const validateUser = (
-  name: any, email: any, phone: any, status: any, cpf: any ) => {    
+  name: string, email: string, phone: string, status: string, cpf: string ) => {    
   const options = {
     abortEarly: false, // show all the error messages, not only the first one
 };

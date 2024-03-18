@@ -10,6 +10,8 @@
     "@types/node": "^16.18.89",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
     "axios": "^1.6.7",
     "joi": "^17.12.2",
     "react": "^18.2.0",
@@ -24,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src --ext .ts"
   },
   "eslintConfig": {
     "extends": [
